@@ -3,3 +3,6 @@
 *.html linguist-language=Java
 *.vue linguist-language=Java
 *.sql linguist-language=Java
+* text eol=lf
+# 对于特定的文件后缀，也可以添加特定的转换规则
+*.java text eol=lf
