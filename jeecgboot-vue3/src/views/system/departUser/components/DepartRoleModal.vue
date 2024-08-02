@@ -5,16 +5,16 @@
 </template>
 
 <script lang="ts" setup>
-  import { computed, inject, ref, unref } from 'vue';
+import {computed, inject, ref, unref} from 'vue';
 
-  import { BasicForm, useForm } from '/@/components/Form/index';
-  // noinspection ES6UnusedImports
-  import { BasicModal, useModalInner } from '/@/components/Modal';
+import {BasicForm, useForm} from '/@/components/Form/index';
+// noinspection ES6UnusedImports
+import {BasicModal, useModalInner} from '/@/components/Modal';
 
-  import { saveOrUpdateDepartRole } from '../depart.user.api';
-  import { departRoleModalFormSchema } from '../depart.user.data';
+import {saveOrUpdateDepartRole} from '../depart.user.api';
+import {departRoleModalFormSchema} from '../depart.user.data';
 
-  const emit = defineEmits(['success', 'register']);
+const emit = defineEmits(['success', 'register']);
   const props = defineProps({
     // 当前部门ID
     departId: { require: true, type: String },

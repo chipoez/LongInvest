@@ -4,12 +4,12 @@
   </BasicModal>
 </template>
 <script lang="ts" setup>
-  import { ref, computed, unref } from 'vue';
-  import { BasicModal, useModalInner } from '/src/components/Modal';
-  import { BasicForm, useForm } from '/src/components/Form';
-  import { formSchema } from '../category.data';
-  import { loadTreeData, saveOrUpdateDict } from '../category.api';
-  // 获取emit
+import {computed, ref, unref} from 'vue';
+import {BasicModal, useModalInner} from '/src/components/Modal';
+import {BasicForm, useForm} from '/src/components/Form';
+import {formSchema} from '../category.data';
+import {loadTreeData, saveOrUpdateDict} from '../category.api';
+// 获取emit
   const emit = defineEmits(['register', 'success']);
   const isUpdate = ref(true);
   const expandedRowKeys = ref([]);

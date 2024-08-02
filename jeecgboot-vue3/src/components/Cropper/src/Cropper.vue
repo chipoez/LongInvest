@@ -4,14 +4,14 @@
   </div>
 </template>
 <script lang="ts">
-  import type { CSSProperties } from 'vue';
-  import { defineComponent, onMounted, ref, unref, computed, onUnmounted } from 'vue';
-  import Cropper from 'cropperjs';
-  import 'cropperjs/dist/cropper.css';
-  import { useDesign } from '/@/hooks/web/useDesign';
-  import { useDebounceFn } from '@vueuse/core';
+import type {CSSProperties} from 'vue';
+import {computed, defineComponent, onMounted, onUnmounted, ref, unref} from 'vue';
+import Cropper from 'cropperjs';
+import 'cropperjs/dist/cropper.css';
+import {useDesign} from '/@/hooks/web/useDesign';
+import {useDebounceFn} from '@vueuse/core';
 
-  type Options = Cropper.Options;
+type Options = Cropper.Options;
 
   const defaultOptions: Options = {
     aspectRatio: 1,

@@ -10,13 +10,14 @@
 </template>
 
 <script lang="ts">
-  import { computed, defineComponent, watch, ref, onMounted, unref } from 'vue';
-  import { TreeSelect } from 'ant-design-vue';
-  import { isArray, isFunction } from '/@/utils/is';
-  import { get } from 'lodash-es';
-  import { propTypes } from '/@/utils/propTypes';
-  import { LoadingOutlined } from '@ant-design/icons-vue';
-  export default defineComponent({
+import {computed, defineComponent, onMounted, ref, unref, watch} from 'vue';
+import {TreeSelect} from 'ant-design-vue';
+import {isArray, isFunction} from '/@/utils/is';
+import {get} from 'lodash-es';
+import {propTypes} from '/@/utils/propTypes';
+import {LoadingOutlined} from '@ant-design/icons-vue';
+
+export default defineComponent({
     name: 'ApiTreeSelect',
     components: { ATreeSelect: TreeSelect, LoadingOutlined },
     props: {

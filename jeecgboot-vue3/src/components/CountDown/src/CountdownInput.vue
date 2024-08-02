@@ -9,12 +9,12 @@
   </a-input>
 </template>
 <script lang="ts">
-  import { defineComponent, PropType } from 'vue';
-  import CountButton from './CountButton.vue';
-  import { useDesign } from '/@/hooks/web/useDesign';
-  import { useRuleFormItem } from '/@/hooks/component/useFormItemSingle';
+import {defineComponent, PropType} from 'vue';
+import CountButton from './CountButton.vue';
+import {useDesign} from '/@/hooks/web/useDesign';
+import {useRuleFormItem} from '/@/hooks/component/useFormItemSingle';
 
-  const props = {
+const props = {
     value: { type: String },
     size: { type: String, validator: (v) => ['default', 'large', 'small'].includes(v) },
     count: { type: Number, default: 60 },

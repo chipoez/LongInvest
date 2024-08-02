@@ -17,7 +17,7 @@
               <view class="cu-form-group">
                 <view class="flex align-center">
                   <view class="title"><text space="ensp">种类：</text></view>
-                  <input  placeholder="请输入种类" v-model="model.type"/>
+                  <input type="number" placeholder="请输入种类" v-model="model.type"/>
                 </view>
               </view>
               <view class="cu-form-group">
@@ -49,9 +49,9 @@
 </template>
 
 <script>
-import myDate from '@/components/my-componets/my-date.vue'
+    import myDate from '@/components/my-componets/my-date.vue'
 
-export default {
+    export default {
         name: "FinancialInstrumentsForm",
         components:{ myDate },
         props:{

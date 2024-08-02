@@ -59,22 +59,24 @@
 </template>
 
 <script>
-  import { UploadOutlined, FolderOutlined, DownloadOutlined, PaperClipOutlined, DeleteOutlined } from '@ant-design/icons-vue';
-  import JUpload from '/@/components/Form/src/jeecg/components/JUpload/JUpload.vue';
-  import { uploadFileUrl } from './useComment';
-  import { propTypes } from '/@/utils/propTypes';
-  import { computed, watchEffect, unref, ref } from 'vue';
-  import { useMessage } from '/@/hooks/web/useMessage';
-  import { fileList } from './useComment';
-  import { getFileAccessHttpUrl } from '/@/utils/common/compUtils';
-  import { useUserStore } from '/@/store/modules/user';
-  import { saveOne, useCommentWithFile, useFileList } from './useComment';
-  import {useModal} from "/@/components/Modal";
+import {
+  DeleteOutlined,
+  DownloadOutlined,
+  FolderOutlined,
+  PaperClipOutlined,
+  UploadOutlined
+} from '@ant-design/icons-vue';
+import JUpload from '/@/components/Form/src/jeecg/components/JUpload/JUpload.vue';
+import {fileList, uploadFileUrl, useCommentWithFile, useFileList} from './useComment';
+import {propTypes} from '/@/utils/propTypes';
+import {ref, watchEffect} from 'vue';
+import {useUserStore} from '/@/store/modules/user';
+import {useModal} from "/@/components/Modal";
 
-  import { Tooltip } from 'ant-design-vue';
-  import HistoryFileList from './HistoryFileList.vue';
+import {Tooltip} from 'ant-design-vue';
+import HistoryFileList from './HistoryFileList.vue';
 
-  export default {
+export default {
     name: 'CommentFiles',
     components: {
       UploadOutlined,
@@ -139,11 +141,11 @@
         selectFileList.value = [];
         await loadFileList();
       }
-      
+
       function showFileModal() {
         openModal(true, {})
       }
-      
+
       function onSelectFileOk(temp) {
         // update-begin--author:liaozhiyang---date:20240603---for：【TV360X-935】从知识库选择文件判断下是否没选
         if (temp.id === '') return;

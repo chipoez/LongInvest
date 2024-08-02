@@ -1,4 +1,8 @@
-import {BasicColumn, FormSchema} from '/@/components/Table';
+import {BasicColumn} from '/@/components/Table';
+import {FormSchema} from '/@/components/Table';
+import { rules} from '/@/utils/helper/validator';
+import { render } from '/@/utils/common/renderUtils';
+import { getWeekMonthQuarterYear } from '/@/utils';
 //列表数据
 export const columns: BasicColumn[] = [
    {
@@ -14,12 +18,12 @@ export const columns: BasicColumn[] = [
    {
     title: '代码',
     align:"center",
-    dataIndex: 'tickerSymbol_dictText'
+    dataIndex: 'tickerSymbol'
    },
    {
     title: '货币单位',
     align:"center",
-    dataIndex: 'currency'
+    dataIndex: 'currency_dictText'
    },
    {
     title: '限购',
@@ -40,16 +44,14 @@ export const searchFormSchema: FormSchema[] = [
       field: 'type',
       component: 'JDictSelectTag',
       componentProps:{
+          dictCode:"financial_instrument_type_dict"
       },
       //colProps: {span: 6},
  	},
 	{
       label: "代码",
       field: 'tickerSymbol',
-      component: 'JSearchSelect',
-      componentProps:{
-         dict:",,"
-      },
+      component: 'Input',
       //colProps: {span: 6},
  	},
 ];
@@ -70,7 +72,7 @@ export const formSchema: FormSchema[] = [
     field: 'type',
     component: 'JDictSelectTag',
     componentProps:{
-        dictCode:""
+        dictCode:"financial_instrument_type_dict"
      },
     dynamicRules: ({model,schema}) => {
           return [
@@ -81,10 +83,7 @@ export const formSchema: FormSchema[] = [
   {
     label: '代码',
     field: 'tickerSymbol',
-    component: 'JSearchSelect',
-    componentProps:{
-       dict:""
-    },
+    component: 'Input',
     dynamicRules: ({model,schema}) => {
           return [
                  { required: true, message: '请输入代码!'},
@@ -94,7 +93,10 @@ export const formSchema: FormSchema[] = [
   {
     label: '货币单位',
     field: 'currency',
-    component: 'Input',
+    component: 'JDictSelectTag',
+    componentProps:{
+        dictCode:"currency_dict"
+     },
   },
   {
     label: '限购',
@@ -113,9 +115,9 @@ export const formSchema: FormSchema[] = [
 // 高级查询数据
 export const superQuerySchema = {
   name: {title: '名称',order: 0,view: 'text', type: 'string',},
-  type: {title: '种类',order: 1,view: 'list', type: 'string',,},
-  tickerSymbol: {title: '代码',order: 2,view: 'sel_search', type: 'string',,},
-  currency: {title: '货币单位',order: 3,view: 'text', type: 'string',},
+  type: {title: '种类',order: 1,view: 'number', type: 'number',dictCode: 'financial_instrument_type_dict',},
+  tickerSymbol: {title: '代码',order: 2,view: 'text', type: 'string',},
+  currency: {title: '货币单位',order: 3,view: 'list', type: 'string',dictCode: 'currency_dict',},
   purchaseLimitAmount: {title: '限购',order: 4,view: 'number', type: 'number',},
 };
 

@@ -31,36 +31,35 @@
   </Form>
 </template>
 <script lang="ts">
-  import type { FormActionType, FormProps, FormSchema } from './types/form';
-  import type { AdvanceState } from './types/hooks';
-  import type { Ref } from 'vue';
+import type {FormActionType, FormProps, FormSchema} from './types/form';
+import type {AdvanceState} from './types/hooks';
+import type {Ref} from 'vue';
+import {computed, defineComponent, nextTick, onMounted, reactive, ref, unref, watch} from 'vue';
+import {Form, Row} from 'ant-design-vue';
+import FormItem from './components/FormItem.vue';
+import FormAction from './components/FormAction.vue';
 
-  import { defineComponent, reactive, ref, computed, unref, onMounted, watch, nextTick } from 'vue';
-  import { Form, Row } from 'ant-design-vue';
-  import FormItem from './components/FormItem.vue';
-  import FormAction from './components/FormAction.vue';
+import {dateItemType} from './helper';
+import {dateUtil} from '/@/utils/dateUtil';
 
-  import { dateItemType } from './helper';
-  import { dateUtil } from '/@/utils/dateUtil';
+// import { cloneDeep } from 'lodash-es';
+import {deepMerge} from '/@/utils';
 
-  // import { cloneDeep } from 'lodash-es';
-  import { deepMerge } from '/@/utils';
+import {useFormValues} from './hooks/useFormValues';
+import useAdvanced from './hooks/useAdvanced';
+import {useFormEvents} from './hooks/useFormEvents';
+import {createFormContext} from './hooks/useFormContext';
+import {useAutoFocus} from './hooks/useAutoFocus';
+import {useModalContext} from '/@/components/Modal';
 
-  import { useFormValues } from './hooks/useFormValues';
-  import useAdvanced from './hooks/useAdvanced';
-  import { useFormEvents } from './hooks/useFormEvents';
-  import { createFormContext } from './hooks/useFormContext';
-  import { useAutoFocus } from './hooks/useAutoFocus';
-  import { useModalContext } from '/@/components/Modal';
+import {basicProps} from './props';
+import componentSetting from '/@/settings/componentSetting';
 
-  import { basicProps } from './props';
-  import componentSetting from '/@/settings/componentSetting';
+import {useDesign} from '/@/hooks/web/useDesign';
+import dayjs from 'dayjs';
+import {useDebounceFn} from '@vueuse/core';
 
-  import { useDesign } from '/@/hooks/web/useDesign';
-  import dayjs from 'dayjs';
-  import { useDebounceFn } from '@vueuse/core';
-
-  export default defineComponent({
+export default defineComponent({
     name: 'BasicForm',
     components: { FormItem, Form, Row, FormAction },
     props: basicProps,
@@ -399,7 +398,7 @@
       font-size: 13px;
     }*/
     /*【美化表单】form的字体改小一号*/
-    
+
     .ant-form-explain {
       font-size: 14px;
     }

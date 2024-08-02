@@ -1,5 +1,5 @@
-import { defHttp } from '/@/utils/http/axios';
-import { Modal } from 'ant-design-vue';
+import {defHttp} from '/@/utils/http/axios';
+import {Modal} from 'ant-design-vue';
 
 enum Api {
   list = '/sys/category/rootList',

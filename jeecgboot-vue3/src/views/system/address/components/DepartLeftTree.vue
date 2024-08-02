@@ -21,12 +21,11 @@
 </template>
 
 <script lang="ts" setup>
-  import { inject, nextTick, ref, unref } from 'vue';
-  import { queryDepartTreeSync } from '../address.api';
-  import { searchByKeywords } from '/@/views/system/departUser/depart.user.api';
-  import { Popconfirm } from 'ant-design-vue';
+import {inject, nextTick, ref} from 'vue';
+import {queryDepartTreeSync} from '../address.api';
+import {searchByKeywords} from '/@/views/system/departUser/depart.user.api';
 
-  const prefixCls = inject('prefixCls');
+const prefixCls = inject('prefixCls');
   const emit = defineEmits(['select', 'rootTreeData']);
 
   const loading = ref<boolean>(false);

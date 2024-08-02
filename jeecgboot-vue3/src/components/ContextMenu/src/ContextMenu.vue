@@ -1,11 +1,11 @@
 <script lang="tsx">
-  import type { ContextMenuItem, ItemContentProps, Axis } from './typing';
-  import type { FunctionalComponent, CSSProperties } from 'vue';
-  import { defineComponent, nextTick, onMounted, computed, ref, unref, onUnmounted } from 'vue';
-  import Icon from '/@/components/Icon';
-  import { Menu, Divider } from 'ant-design-vue';
+import type {Axis, ContextMenuItem, ItemContentProps} from './typing';
+import type {CSSProperties, FunctionalComponent} from 'vue';
+import {computed, defineComponent, nextTick, onMounted, onUnmounted, ref, unref} from 'vue';
+import Icon from '/@/components/Icon';
+import {Divider, Menu} from 'ant-design-vue';
 
-  const prefixCls = 'context-menu';
+const prefixCls = 'context-menu';
 
   const props = {
     width: { type: Number, default: 156 },

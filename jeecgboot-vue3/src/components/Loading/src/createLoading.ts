@@ -1,7 +1,5 @@
-import { VNode, defineComponent } from 'vue';
-import type { LoadingProps } from './typing';
-
-import { createVNode, render, reactive, h } from 'vue';
+import {createVNode, defineComponent, h, reactive, render, VNode} from 'vue';
+import type {LoadingProps} from './typing';
 import Loading from './Loading.vue';
 
 export function createLoading(props?: Partial<LoadingProps>, target?: HTMLElement, wait = false) {

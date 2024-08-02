@@ -3,6 +3,7 @@ package com.longinvest;
 import com.xkcoding.justauth.autoconfigure.JustAuthAutoConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.jeecg.common.util.oConvertUtils;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,6 +23,7 @@ import java.net.UnknownHostException;
 @Slf4j
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.longinvest","org.jeecg"})
+@MapperScan( {"com.longinvest.modules.**.mapper","org.jeecg.**.mapper"})
 @ImportAutoConfiguration(JustAuthAutoConfiguration.class)  // spring boot 3.x justauth 兼容性处理
 //@EnableAutoConfiguration(exclude={MongoAutoConfiguration.class})
 public class LongInvestApplication extends SpringBootServletInitializer {

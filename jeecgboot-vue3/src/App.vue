@@ -7,21 +7,20 @@
 </template>
 
 <script lang="ts" setup>
-  import { watch, ref } from 'vue';
-  import { theme } from 'ant-design-vue';
-  import { ConfigProvider } from 'ant-design-vue';
-  import { AppProvider } from '/@/components/Application';
-  import { useTitle } from '/@/hooks/web/useTitle';
-  import { useLocale } from '/@/locales/useLocale';
-  import { useAppStore } from '/@/store/modules/app';
-  import { useRootSetting } from '/@/hooks/setting/useRootSetting';
-  import { ThemeEnum } from '/@/enums/appEnum';
-  import { changeTheme } from '/@/logics/theme/index';
+import {ref, watch} from 'vue';
+import {ConfigProvider, theme} from 'ant-design-vue';
+import {AppProvider} from '/@/components/Application';
+import {useTitle} from '/@/hooks/web/useTitle';
+import {useLocale} from '/@/locales/useLocale';
+import {useAppStore} from '/@/store/modules/app';
+import {useRootSetting} from '/@/hooks/setting/useRootSetting';
+import {ThemeEnum} from '/@/enums/appEnum';
+import {changeTheme} from '/@/logics/theme/index';
+// 解决日期时间国际化问题
+import 'dayjs/locale/zh-cn';
 
-  const appStore = useAppStore();
-  // 解决日期时间国际化问题
-  import 'dayjs/locale/zh-cn';
-  // support Multi-language
+const appStore = useAppStore();
+// support Multi-language
   const { getAntdLocale } = useLocale();
 
   useTitle();

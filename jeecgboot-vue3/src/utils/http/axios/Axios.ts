@@ -1,15 +1,14 @@
-import type { AxiosRequestConfig, AxiosInstance, AxiosResponse, AxiosError } from 'axios';
-import type { RequestOptions, Result, UploadFileParams, UploadFileCallBack } from '/#/axios';
-import type { CreateAxiosOptions } from './axiosTransform';
+import type {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 import axios from 'axios';
+import type {RequestOptions, Result, UploadFileCallBack, UploadFileParams} from '/#/axios';
+import type {CreateAxiosOptions} from './axiosTransform';
 import qs from 'qs';
-import { AxiosCanceler } from './axiosCancel';
-import { isFunction } from '/@/utils/is';
-import { cloneDeep } from 'lodash-es';
-import { ContentTypeEnum } from '/@/enums/httpEnum';
-import { RequestEnum } from '/@/enums/httpEnum';
-import { useGlobSetting } from '/@/hooks/setting';
-import { useMessage } from '/@/hooks/web/useMessage';
+import {AxiosCanceler} from './axiosCancel';
+import {isFunction} from '/@/utils/is';
+import {cloneDeep} from 'lodash-es';
+import {ContentTypeEnum, RequestEnum} from '/@/enums/httpEnum';
+import {useGlobSetting} from '/@/hooks/setting';
+import {useMessage} from '/@/hooks/web/useMessage';
 
 const { createMessage } = useMessage();
 export * from './axiosTransform';

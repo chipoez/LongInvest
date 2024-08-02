@@ -1,15 +1,21 @@
-import type { ProjectConfig, HeaderSetting, MenuSetting, TransitionSetting, MultiTabsSetting } from '/#/config';
-import type { BeforeMiniState } from '/#/store';
+import type {
+  HeaderSetting,
+  MenuSetting,
+  MultiTabsSetting,
+  ProjectConfig,
+  TransitionSetting
+} from '/#/config';
+import type {BeforeMiniState} from '/#/store';
 
-import { defineStore } from 'pinia';
-import { store } from '/@/store';
+import {defineStore} from 'pinia';
+import {store} from '/@/store';
 
-import { ThemeEnum } from '/@/enums/appEnum';
-import { APP_DARK_MODE_KEY_, PROJ_CFG_KEY } from '/@/enums/cacheEnum';
-import { Persistent } from '/@/utils/cache/persistent';
-import { darkMode } from '/@/settings/designSetting';
-import { resetRouter } from '/@/router';
-import { deepMerge } from '/@/utils';
+import {ThemeEnum} from '/@/enums/appEnum';
+import {APP_DARK_MODE_KEY_, PROJ_CFG_KEY} from '/@/enums/cacheEnum';
+import {Persistent} from '/@/utils/cache/persistent';
+import {darkMode} from '/@/settings/designSetting';
+import {resetRouter} from '/@/router';
+import {deepMerge} from '/@/utils';
 
 interface AppState {
   darkMode?: ThemeEnum;
@@ -104,7 +110,7 @@ export const useAppStore = defineStore({
     setMessageHrefParams(params: any): void {
       this.messageHrefParams = params;
     },
-    
+
   },
 });
 

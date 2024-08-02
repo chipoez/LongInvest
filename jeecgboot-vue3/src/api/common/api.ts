@@ -1,6 +1,7 @@
-import { defHttp } from '/@/utils/http/axios';
-import { message } from 'ant-design-vue';
-import { useGlobSetting } from '/@/hooks/setting';
+import {defHttp} from '/@/utils/http/axios';
+import {message} from 'ant-design-vue';
+import {useGlobSetting} from '/@/hooks/setting';
+
 const globSetting = useGlobSetting();
 const baseUploadUrl = globSetting.uploadUrl;
 enum Api {

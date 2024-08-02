@@ -65,22 +65,20 @@
   <UserAccountModal @register="registerModal" @success="getUserDetail"></UserAccountModal>
 </template>
 <script lang="ts" setup>
-import { computed, onMounted, ref } from 'vue';
-import { CollapseContainer } from '/@/components/Container';
-import { CropperAvatar } from '/@/components/Cropper';
-import { useMessage } from '/@/hooks/web/useMessage';
+import {computed, onMounted, ref} from 'vue';
+import {CropperAvatar} from '/@/components/Cropper';
+import {useMessage} from '/@/hooks/web/useMessage';
 import headerImg from '/@/assets/images/header.jpg';
-import { defHttp } from '/@/utils/http/axios';
-import { useUserStore } from '/@/store/modules/user';
-import { uploadImg } from '/@/api/sys/upload';
-import { getFileAccessHttpUrl } from '/@/utils/common/compUtils';
+import {useUserStore} from '/@/store/modules/user';
+import {uploadImg} from '/@/api/sys/upload';
+import {getFileAccessHttpUrl} from '/@/utils/common/compUtils';
 import dayjs from 'dayjs';
-import { ajaxGetDictItems, getDictItemsByCode, initDictOptions } from '/@/utils/dict';
-import { userEdit, getUserData, queryNameByCodes } from './UserSetting.api';
+import {getDictItemsByCode} from '/@/utils/dict';
+import {getUserData, userEdit} from './UserSetting.api';
 import UserAccountModal from './commponents/UserAccountModal.vue';
-import { useModal } from '/@/components/Modal';
-import { cloneDeep } from 'lodash-es';
-import { useDesign } from '/@/hooks/web/useDesign';
+import {useModal} from '/@/components/Modal';
+import {cloneDeep} from 'lodash-es';
+import {useDesign} from '/@/hooks/web/useDesign';
 //TODO 当字典租户隔离时，数据会查不到，默认一个
 const sexOption = getDictItemsByCode("sex") || [{text:'男',value:'1'},{text:'女',value:'2'}];
 const { createMessage } = useMessage();

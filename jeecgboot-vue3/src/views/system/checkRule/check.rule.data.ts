@@ -1,8 +1,7 @@
-import { BasicColumn, FormSchema } from '/@/components/Table';
-import { render } from '/@/utils/common/renderUtils';
-import { duplicateCheckDelay } from '/@/views/system/user/user.api';
-import { validateCheckRule } from '/@/views/system/checkRule/check.rule.api';
-import { array } from 'vue-types';
+import {BasicColumn, FormSchema} from '/@/components/Table';
+import {render} from '/@/utils/common/renderUtils';
+import {duplicateCheckDelay} from '/@/views/system/user/user.api';
+import {validateCheckRule} from '/@/views/system/checkRule/check.rule.api';
 
 export const columns: BasicColumn[] = [
   {

@@ -1,22 +1,22 @@
 package org.jeecg.modules.base.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.jeecg.common.api.dto.LogDTO;
 import org.jeecg.common.constant.enums.ClientTerminalTypeEnum;
-import org.jeecg.common.util.BrowserUtils;
-import org.jeecg.modules.base.mapper.BaseCommonMapper;
-import org.jeecg.modules.base.service.BaseCommonService;
 import org.jeecg.common.system.vo.LoginUser;
+import org.jeecg.common.util.BrowserUtils;
 import org.jeecg.common.util.IpUtils;
 import org.jeecg.common.util.SpringContextUtils;
 import org.jeecg.common.util.oConvertUtils;
+import org.jeecg.modules.base.mapper.BaseCommonMapper;
+import org.jeecg.modules.base.service.BaseCommonService;
 import org.springframework.stereotype.Service;
 
-import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpServletRequest;
-import java.util.*;
+import java.util.Date;
 
 /**
  * @Description: common实现类
@@ -35,7 +35,7 @@ public class BaseCommonServiceImpl implements BaseCommonService {
             logDTO.setId(String.valueOf(IdWorker.getId()));
         }
         //保存日志（异常捕获处理，防止数据太大存储失败，导致业务失败）JT-238
-        try {   
+        try {
             logDTO.setCreateTime(new Date());
             baseCommonMapper.saveLog(logDTO);
         } catch (Exception e) {

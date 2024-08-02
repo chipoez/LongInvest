@@ -1,12 +1,12 @@
 /**
  * 生成外部配置文件，用于生产发布后配置，无需重新打包
  */
-import { GLOB_CONFIG_FILE_NAME, OUTPUT_DIR } from '../constant';
-import fs, { writeFileSync } from 'fs-extra';
+import {GLOB_CONFIG_FILE_NAME, OUTPUT_DIR} from '../constant';
+import fs, {writeFileSync} from 'fs-extra';
 import colors from 'picocolors';
 
-import { getEnvConfig, getRootPath } from '../utils';
-import { getConfigFileName } from '../getConfigFileName';
+import {getEnvConfig, getRootPath} from '../utils';
+import {getConfigFileName} from '../getConfigFileName';
 
 import pkg from '../../package.json';
 

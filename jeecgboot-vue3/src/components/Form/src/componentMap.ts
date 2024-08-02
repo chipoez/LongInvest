@@ -6,36 +6,36 @@
  * JCodeEditor
  * JEasyCron
  */
-import type { Component } from 'vue';
-import type { ComponentType } from './types/index';
-import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent';
+import type {Component} from 'vue';
+import type {ComponentType} from './types/index';
+import {createAsyncComponent} from '/@/utils/factory/createAsyncComponent';
 /**
  * Component list, register here to setting it in the form
  */
 import {
-  Input,
-  Select,
-  Radio,
-  Checkbox,
   AutoComplete,
   Cascader,
+  Checkbox,
   DatePicker,
+  Divider,
+  Input,
   InputNumber,
+  Radio,
+  Rate,
+  Select,
+  Slider,
   Switch,
   TimePicker,
   TreeSelect,
-  Slider,
-  Rate,
-  Divider,
 } from 'ant-design-vue';
 import ApiRadioGroup from './components/ApiRadioGroup.vue';
 import RadioButtonGroup from './components/RadioButtonGroup.vue';
 import ApiSelect from './components/ApiSelect.vue';
 import ApiTreeSelect from './components/ApiTreeSelect.vue';
-import { BasicUpload } from '/@/components/Upload';
-import { StrengthMeter } from '/@/components/StrengthMeter';
-import { IconPicker } from '/@/components/Icon';
-import { CountdownInput } from '/@/components/CountDown';
+import {BasicUpload} from '/@/components/Upload';
+import {StrengthMeter} from '/@/components/StrengthMeter';
+import {IconPicker} from '/@/components/Icon';
+import {CountdownInput} from '/@/components/CountDown';
 //自定义组件
 // import JAreaLinkage from './jeecg/components/JAreaLinkage.vue';
 import JSelectUser from './jeecg/components/JSelectUser.vue';
@@ -67,14 +67,14 @@ import JSelectUserByDept from './jeecg/components/JSelectUserByDept.vue';
 import JUpload from './jeecg/components/JUpload/JUpload.vue';
 import JSearchSelect from './jeecg/components/JSearchSelect.vue';
 import JAddInput from './jeecg/components/JAddInput.vue';
-import { Time } from '/@/components/Time';
+import {Time} from '/@/components/Time';
 import JRangeNumber from './jeecg/components/JRangeNumber.vue';
 import UserSelect from './jeecg/components/userSelect/index.vue';
 import JRangeDate from './jeecg/components/JRangeDate.vue'
 import JRangeTime from './jeecg/components/JRangeTime.vue'
 import JInputSelect from './jeecg/components/JInputSelect.vue'
 import RoleSelectInput from './jeecg/components/roleSelect/RoleSelectInput.vue';
-import {DatePickerInFilter, CascaderPcaInFilter} from "@/components/InFilter";
+import {CascaderPcaInFilter, DatePickerInFilter} from "@/components/InFilter";
 
 const componentMap = new Map<ComponentType, Component>();
 

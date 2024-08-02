@@ -11,19 +11,19 @@
   </SubMenu>
 </template>
 <script lang="ts">
-  import type { Menu as MenuType } from '/@/router/types';
-  import { defineComponent, computed, watch } from 'vue';
-  import { Menu } from 'ant-design-vue';
-  import { useDesign } from '/@/hooks/web/useDesign';
-  import { checkChildrenHidden } from '/@/utils/common/compUtils';
-  import { itemProps } from '../props';
-  import BasicMenuItem from './BasicMenuItem.vue';
-  import MenuItemContent from './MenuItemContent.vue';
-  import { useBasicRootMenuContext } from '../useBasicMenuContext';
-  import { useLocaleStore } from '/@/store/modules/locale';
-  import { getMenus } from '/@/router/menus';
-  
-  export default defineComponent({
+import type {Menu as MenuType} from '/@/router/types';
+import {computed, defineComponent, watch} from 'vue';
+import {Menu} from 'ant-design-vue';
+import {useDesign} from '/@/hooks/web/useDesign';
+import {checkChildrenHidden} from '/@/utils/common/compUtils';
+import {itemProps} from '../props';
+import BasicMenuItem from './BasicMenuItem.vue';
+import MenuItemContent from './MenuItemContent.vue';
+import {useBasicRootMenuContext} from '../useBasicMenuContext';
+import {useLocaleStore} from '/@/store/modules/locale';
+import {getMenus} from '/@/router/menus';
+
+export default defineComponent({
     name: 'BasicSubMenuItem',
     isSubMenu: true,
     components: {
@@ -36,7 +36,7 @@
       const { prefixCls } = useDesign('basic-subMenu');
       const { menuState } = useBasicRootMenuContext();
       const localeStore = useLocaleStore();
-      
+
       const getShowMenu = computed(() => !props.item.meta?.hideMenu);
       function menuHasChildren(menuTreeItem: MenuType): boolean {
         return (

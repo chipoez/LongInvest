@@ -1,7 +1,7 @@
-import type { Component } from 'vue';
-import { Input, Select, Checkbox, InputNumber, Switch, DatePicker, TimePicker } from 'ant-design-vue';
-import type { ComponentType } from './types/componentType';
-import { ApiSelect, ApiTreeSelect } from '/@/components/Form';
+import type {Component} from 'vue';
+import {Checkbox, DatePicker, Input, InputNumber, Select, Switch, TimePicker} from 'ant-design-vue';
+import type {ComponentType} from './types/componentType';
+import {ApiSelect, ApiTreeSelect} from '/@/components/Form';
 
 const componentMap = new Map<ComponentType, Component>();
 

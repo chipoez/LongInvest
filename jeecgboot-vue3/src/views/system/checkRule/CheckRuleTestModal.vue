@@ -15,11 +15,12 @@
 </template>
 
 <script lang="ts" setup>
-  import { BasicModal, useModalInner } from '/@/components/Modal';
-  import { BasicForm, useForm } from '/@/components/Form/index';
-  import { checkRuleInput } from '/@/views/system/checkRule/check.rule.data';
-  import { ref } from 'vue';
-  let realTestValue = ref('');
+import {BasicModal, useModalInner} from '/@/components/Modal';
+import {BasicForm, useForm} from '/@/components/Form/index';
+import {checkRuleInput} from '/@/views/system/checkRule/check.rule.data';
+import {ref} from 'vue';
+
+let realTestValue = ref('');
   const okButtonProps = {
     style: { display: 'none' },
   };

@@ -25,12 +25,12 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref, unref } from 'vue';
-  import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
+import {ref, unref} from 'vue';
+import {BasicDrawer, useDrawerInner} from '/@/components/Drawer';
 
-  import { queryDepartDataRule, saveDepartDataRule } from '../depart.api';
+import {queryDepartDataRule, saveDepartDataRule} from '../depart.api';
 
-  defineEmits(['register']);
+defineEmits(['register']);
   const loading = ref<boolean>(false);
   const departId = ref('');
   const functionId = ref('');

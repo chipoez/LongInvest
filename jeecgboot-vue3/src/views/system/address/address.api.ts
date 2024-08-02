@@ -1,4 +1,4 @@
-import { defHttp } from '/@/utils/http/axios';
+import {defHttp} from '/@/utils/http/axios';
 
 export enum Api {
   list = '/sys/user/queryByOrgCodeForAddressList',

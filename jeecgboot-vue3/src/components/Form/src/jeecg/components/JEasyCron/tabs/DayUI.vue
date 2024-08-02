@@ -49,11 +49,11 @@
 </template>
 
 <script lang="ts">
-  import { computed, defineComponent, watch } from 'vue';
-  import { InputNumber } from 'ant-design-vue';
-  import { TypeEnum, useTabEmits, useTabProps, useTabSetup } from './useTabMixin';
+import {computed, defineComponent, watch} from 'vue';
+import {InputNumber} from 'ant-design-vue';
+import {TypeEnum, useTabEmits, useTabProps, useTabSetup} from './useTabMixin';
 
-  export default defineComponent({
+export default defineComponent({
     name: 'DayUI',
     components: { InputNumber },
     props: useTabProps({

@@ -10,12 +10,12 @@
 </template>
 
 <script lang="ts" setup>
-  //引入依赖
-  import { useForm, BasicForm, FormSchema } from '/@/components/Form';
-  //引入CustomDemo自定义组件
-  import JInput from "/@/components/Form/src/jeecg/components/JInput.vue";
+//引入依赖
+import {BasicForm, FormSchema, useForm} from '/@/components/Form';
+//引入CustomDemo自定义组件
+import JInput from "/@/components/Form/src/jeecg/components/JInput.vue";
 
-  //自定义表单字段
+//自定义表单字段
   const formSchemas: FormSchema[] = [
     {
       field: 'name',

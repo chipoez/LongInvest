@@ -72,29 +72,34 @@
 </template>
 
 <script>
-  /**
-   * 评论列表
-   */
-  import { defineComponent, ref, onMounted, watch, watchEffect ,inject, nextTick } from 'vue';
-  import { propTypes } from '/@/utils/propTypes';
-  // import dayjs from 'dayjs';
-  // import relativeTime from 'dayjs/plugin/relativeTime';
-  // import customParseFormat from 'dayjs/plugin/customParseFormat';
-  // dayjs.locale('zh');
-  // dayjs.extend(relativeTime);
-  // dayjs.extend(customParseFormat);
-  
-  import { MessageOutlined } from '@ant-design/icons-vue';
-  import { Comment, Tooltip } from 'ant-design-vue';
-  import { useUserStore } from '/@/store/modules/user';
-  import MyComment from './MyComment.vue';
-  import { list, saveOne, deleteOne, useCommentWithFile, useEmojiHtml, queryById, getGloablEmojiIndex } from './useComment';
-  import { useMessage } from '/@/hooks/web/useMessage';
-  import HistoryFileList from './HistoryFileList.vue';
-  import { Popconfirm } from 'ant-design-vue';
-  import { getFileAccessHttpUrl } from '/@/utils/common/compUtils';
+/**
+ * 评论列表
+ */
+import {defineComponent, inject, nextTick, onMounted, ref, watchEffect} from 'vue';
+import {propTypes} from '/@/utils/propTypes';
+// import dayjs from 'dayjs';
+// import relativeTime from 'dayjs/plugin/relativeTime';
+// import customParseFormat from 'dayjs/plugin/customParseFormat';
+// dayjs.locale('zh');
+// dayjs.extend(relativeTime);
+// dayjs.extend(customParseFormat);
+import {MessageOutlined} from '@ant-design/icons-vue';
+import {Comment, Popconfirm, Tooltip} from 'ant-design-vue';
+import {useUserStore} from '/@/store/modules/user';
+import MyComment from './MyComment.vue';
+import {
+  deleteOne,
+  getGloablEmojiIndex,
+  list,
+  queryById,
+  useCommentWithFile,
+  useEmojiHtml
+} from './useComment';
+import {useMessage} from '/@/hooks/web/useMessage';
+import HistoryFileList from './HistoryFileList.vue';
+import {getFileAccessHttpUrl} from '/@/utils/common/compUtils';
 
-  export default defineComponent({
+export default defineComponent({
     name: 'CommentList',
     components: {
       MessageOutlined,
@@ -126,11 +131,11 @@
         }
         return '';
       }
-      
+
       function getMyAvatar(){
         return userInfo.avatar;
       }
-      
+
       // 获取头像
       function getAvatar(item) {
         if (item.fromUserAvatar) {
@@ -210,7 +215,7 @@
         await saveCommentAndFiles(obj, fileList)
         await loadData();
       }
-      
+
       //评论
       async function sendComment(content, fileList) {
         let obj = {

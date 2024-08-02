@@ -34,18 +34,16 @@
   <UserPasswordModal @register="registerPassModal" @success="initUserDetail" />
 </template>
 <script lang="ts" setup>
-  import { onMounted, ref, reactive } from 'vue';
-  import { CollapseContainer } from '/@/components/Container';
-  import { getUserData } from './UserSetting.api';
-  import { useUserStore } from '/@/store/modules/user';
-  import UserReplacePhoneModal from './commponents/UserPhoneModal.vue';
-  import UserReplaceEmailModal from './commponents/UserEmailModal.vue';
-  import UserPasswordModal from './commponents/UserPasswordModal.vue';
-  import { useModal } from '/@/components/Modal';
-  import { WechatFilled } from '@ant-design/icons-vue';
-  import { useDesign } from '/@/hooks/web/useDesign';
+import {onMounted, reactive, ref} from 'vue';
+import {getUserData} from './UserSetting.api';
+import {useUserStore} from '/@/store/modules/user';
+import UserReplacePhoneModal from './commponents/UserPhoneModal.vue';
+import UserReplaceEmailModal from './commponents/UserEmailModal.vue';
+import UserPasswordModal from './commponents/UserPasswordModal.vue';
+import {useModal} from '/@/components/Modal';
+import {useDesign} from '/@/hooks/web/useDesign';
 
-  const { prefixCls } = useDesign('j-user-account-setting-container');
+const { prefixCls } = useDesign('j-user-account-setting-container');
 
   const userDetail = ref<any>([]);
   const userStore = useUserStore();
@@ -81,10 +79,10 @@
       record: { phone: userDetail.value.phone, username: userDetail.value.username, id: userDetail.value.id, phoneText: userDetail.value.phoneText },
     });
   }
-  
+
   /**
    * 绑定手机号
-   */ 
+   */
   function bindPhone() {
     openModal(true, {
       record: { username: userDetail.value.username, id: userDetail.value.id },

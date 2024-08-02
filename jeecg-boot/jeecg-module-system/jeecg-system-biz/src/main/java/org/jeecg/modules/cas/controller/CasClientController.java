@@ -1,10 +1,9 @@
 package org.jeecg.modules.cas.controller;
 
-import java.util.List;
-
+import com.alibaba.fastjson.JSONObject;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.constant.CommonConstant;
@@ -24,9 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alibaba.fastjson.JSONObject;
-
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
 
 /**
  * <p>
@@ -47,11 +44,11 @@ public class CasClientController {
     private ISysDepartService sysDepartService;
 	@Autowired
     private RedisUtil redisUtil;
-	
+
 	@Value("${cas.prefixUrl}")
     private String prefixUrl;
-	
-	
+
+
 	@GetMapping("/validateLogin")
 	public Object validateLogin(@RequestParam(name="ticket") String ticket,
 								@RequestParam(name="service") String service,
@@ -99,7 +96,7 @@ public class CasClientController {
 			obj.put("userInfo", sysUser);
 			result.setResult(obj);
 			result.success("登录成功");
-	  		
+
 		} catch (Exception e) {
 			//e.printStackTrace();
 			result.error500(e.getMessage());
@@ -107,5 +104,5 @@ public class CasClientController {
 		return new HttpEntity<>(result);
 	}
 
-	
+
 }

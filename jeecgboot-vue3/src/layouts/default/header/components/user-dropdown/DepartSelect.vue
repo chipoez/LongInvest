@@ -50,15 +50,14 @@
   </BasicModal>
 </template>
 <script lang="ts" setup>
-  import { ref, computed, watch, unref } from 'vue';
-  import { Avatar } from 'ant-design-vue';
-  import { BasicModal } from '/@/components/Modal';
-  import { getUserDeparts, selectDepart } from '/@/views/system/depart/depart.api';
-  import { getUserTenants } from '/@/views/system/tenant/tenant.api';
-  import { useMessage } from '/@/hooks/web/useMessage';
-  import { useUserStore } from '/@/store/modules/user';
+import {ref, unref, watch} from 'vue';
+import {BasicModal} from '/@/components/Modal';
+import {getUserDeparts, selectDepart} from '/@/views/system/depart/depart.api';
+import {getUserTenants} from '/@/views/system/tenant/tenant.api';
+import {useMessage} from '/@/hooks/web/useMessage';
+import {useUserStore} from '/@/store/modules/user';
 
-  const userStore = useUserStore();
+const userStore = useUserStore();
   const { createMessage, notification } = useMessage();
   const props = defineProps({
     title: { type: String, default: '部门选择' },
@@ -165,7 +164,7 @@
           userStore.setTenant(unref(tenantSelected));
         }
         createMessage.success('切换成功');
-        
+
         //切换租户后要刷新首页
         window.location.reload();
       })

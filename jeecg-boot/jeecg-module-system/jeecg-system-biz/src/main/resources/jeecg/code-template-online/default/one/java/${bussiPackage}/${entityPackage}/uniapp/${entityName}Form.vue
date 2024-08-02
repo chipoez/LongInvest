@@ -35,9 +35,9 @@
 </template>
 
 <script>
-    import myDate from '@/components/my-componets/my-date.vue'
+import myDate from '@/components/my-componets/my-date.vue'
 
-    export default {
+export default {
         name: "${entityName}Form",
         components:{ myDate },
         props:{

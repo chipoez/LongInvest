@@ -5,15 +5,15 @@
 </template>
 
 <script lang="ts" setup>
-  import { watch, computed, inject, ref, unref, onMounted } from 'vue';
+import {computed, inject, ref, unref} from 'vue';
 
-  import { BasicForm, useForm } from '/@/components/Form/index';
-  import { BasicModal, useModalInner } from '/@/components/Modal';
+import {BasicForm, useForm} from '/@/components/Form/index';
+import {BasicModal, useModalInner} from '/@/components/Modal';
 
-  import { saveOrUpdateDepart } from '../depart.api';
-  import { useBasicFormSchema, orgCategoryOptions } from '../depart.data';
+import {saveOrUpdateDepart} from '../depart.api';
+import {orgCategoryOptions, useBasicFormSchema} from '../depart.data';
 
-  const emit = defineEmits(['success', 'register']);
+const emit = defineEmits(['success', 'register']);
   const props = defineProps({
     rootTreeData: { type: Array, default: () => [] },
   });

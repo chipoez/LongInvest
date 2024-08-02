@@ -4,12 +4,12 @@
   </BasicModal>
 </template>
 <script lang="ts" setup>
-  import { ref, computed, unref } from 'vue';
-  import { BasicModal, useModalInner } from '/@/components/Modal';
-  import { BasicForm, useForm } from '/@/components/Form/index';
-  import { formSchema } from './demo.data';
-  import { saveOrUpdateDemo, getDemoById } from './demo.api';
-  // 声明Emits
+import {computed, ref, unref} from 'vue';
+import {BasicModal, useModalInner} from '/@/components/Modal';
+import {BasicForm, useForm} from '/@/components/Form/index';
+import {formSchema} from './demo.data';
+import {getDemoById, saveOrUpdateDemo} from './demo.api';
+// 声明Emits
   const emit = defineEmits(['register', 'success']);
   const isUpdate = ref(true);
 

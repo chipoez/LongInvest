@@ -5,11 +5,11 @@
 </template>
 
 <script lang="ts" setup>
-  //引入依赖
-  import { useForm, BasicForm, FormSchema } from '/@/components/Form';
-  import { schemas } from './example.data';
+//引入依赖
+import {BasicForm, useForm} from '/@/components/Form';
+import {schemas} from './example.data';
 
-  /**
+/**
    * BasicForm绑定注册;
    */
   const [registerForm, { getFieldsValue, setFieldsValue, resetFields, validate }] = useForm({

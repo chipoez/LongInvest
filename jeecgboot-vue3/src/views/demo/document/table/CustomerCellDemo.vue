@@ -22,12 +22,13 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue';
-  import { BasicTable, useTable, BasicColumn, TableImg } from '/@/components/Table';
-  import { Tag, Avatar } from 'ant-design-vue';
-  import { demoListApi } from '/@/api/demo/table';
-  import { useListPage } from '/@/hooks/system/useListPage';
-  const columns: BasicColumn[] = [
+import {defineComponent} from 'vue';
+import {BasicColumn, BasicTable, TableImg} from '/@/components/Table';
+import {Avatar, Tag} from 'ant-design-vue';
+import {demoListApi} from '/@/api/demo/table';
+import {useListPage} from '/@/hooks/system/useListPage';
+
+const columns: BasicColumn[] = [
     {
       title: 'ID',
       dataIndex: 'id',

@@ -1,6 +1,7 @@
-import { BasicColumn, FormSchema } from '/@/components/Table';
-import { usePermission } from '/@/hooks/web/usePermission';
-import { JVxeColumn, JVxeTypes } from '/@/components/jeecg/JVxeTable/types';
+import {BasicColumn, FormSchema} from '/@/components/Table';
+import {usePermission} from '/@/hooks/web/usePermission';
+import {JVxeColumn, JVxeTypes} from '/@/components/jeecg/JVxeTable/types';
+
 const { isDisabledAuth, hasPermission, initBpmFormData} = usePermission();
 
 export const columns: BasicColumn[] = [
@@ -50,7 +51,7 @@ export const columns: BasicColumn[] = [
 export function getBpmFormSchema(formData) {
   //注入流程节点表单权限
   initBpmFormData(formData);
-  
+
   const formSchema2: FormSchema[] = [
     {
       label: '订单号',
@@ -99,7 +100,7 @@ export function getBpmFormSchema(formData) {
 export function getOrderCustomerFormSchema(formData) {
   //注入流程节点表单权限
   initBpmFormData(formData);
-  
+
   const formSchema2: FormSchema[] = [
     {
       label: '客户名',

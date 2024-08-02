@@ -1,8 +1,8 @@
-import { Ref } from 'vue';
-import { duplicateCheckDelay } from '/@/views/system/user/user.api';
-import { BasicColumn, FormSchema } from '/@/components/Table';
-import { DescItem } from '/@/components/Description';
-import { findTree } from '/@/utils/common/compUtils';
+import {Ref} from 'vue';
+import {duplicateCheckDelay} from '/@/views/system/user/user.api';
+import {BasicColumn, FormSchema} from '/@/components/Table';
+import {DescItem} from '/@/components/Description';
+import {findTree} from '/@/utils/common/compUtils';
 
 // 用户信息 columns
 export const userInfoColumns: BasicColumn[] = [

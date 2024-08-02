@@ -55,12 +55,13 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue';
-  import { BasicTable, useTable, BasicColumn, TableAction } from '/@/components/Table';
+import {defineComponent} from 'vue';
+import {BasicColumn, BasicTable, TableAction} from '/@/components/Table';
 
-  import { demoListApi } from '/@/api/demo/table';
-  import { useListPage } from '/@/hooks/system/useListPage';
-  const columns: BasicColumn[] = [
+import {demoListApi} from '/@/api/demo/table';
+import {useListPage} from '/@/hooks/system/useListPage';
+
+const columns: BasicColumn[] = [
     {
       title: '编号',
       dataIndex: 'no',

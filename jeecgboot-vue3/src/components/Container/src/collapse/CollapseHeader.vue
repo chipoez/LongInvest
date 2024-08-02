@@ -15,10 +15,10 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue';
-  import { BasicArrow, BasicTitle } from '/@/components/Basic';
+import {defineComponent} from 'vue';
+import {BasicArrow, BasicTitle} from '/@/components/Basic';
 
-  const props = {
+const props = {
     prefixCls: { type: String },
     helpMessage: {
       type: [Array, String] as PropType<string[] | string>,

@@ -44,17 +44,21 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref } from 'vue';
+import {ref} from 'vue';
 
-  import { BasicTree } from '/@/components/Tree/index';
-  import { BasicDrawer, useDrawer, useDrawerInner } from '/@/components/Drawer';
-  import { useMessage } from '/@/hooks/web/useMessage';
+import {BasicTree} from '/@/components/Tree/index';
+import {BasicDrawer, useDrawer, useDrawerInner} from '/@/components/Drawer';
+import {useMessage} from '/@/hooks/web/useMessage';
 
-  import DepartRoleDataRuleDrawer from './DepartRoleDataRuleDrawer.vue';
-  import { queryTreeListForDeptRole, queryDeptRolePermission, saveDeptRolePermission } from '../depart.user.api';
-  import { translateTitle } from "@/utils/common/compUtils";
+import DepartRoleDataRuleDrawer from './DepartRoleDataRuleDrawer.vue';
+import {
+  queryDeptRolePermission,
+  queryTreeListForDeptRole,
+  saveDeptRolePermission
+} from '../depart.user.api';
+import {translateTitle} from "@/utils/common/compUtils";
 
-  defineEmits(['register']);
+defineEmits(['register']);
   const { createMessage } = useMessage();
   const loading = ref(false);
   const departId = ref('');

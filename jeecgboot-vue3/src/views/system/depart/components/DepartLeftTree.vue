@@ -88,16 +88,16 @@
 </template>
 
 <script lang="ts" setup>
-  import { inject, nextTick, ref, unref } from 'vue';
-  import { useModal } from '/@/components/Modal';
-  import { useMessage } from '/@/hooks/web/useMessage';
-  import { useMethods } from '/@/hooks/system/useMethods';
-  import { Api, deleteBatchDepart, queryDepartTreeSync } from '../depart.api';
-  import { searchByKeywords } from '/@/views/system/departUser/depart.user.api';
-  import DepartFormModal from '/@/views/system/depart/components/DepartFormModal.vue';
-  import { Popconfirm } from 'ant-design-vue';
+import {inject, nextTick, ref, unref} from 'vue';
+import {useModal} from '/@/components/Modal';
+import {useMessage} from '/@/hooks/web/useMessage';
+import {useMethods} from '/@/hooks/system/useMethods';
+import {Api, deleteBatchDepart, queryDepartTreeSync} from '../depart.api';
+import {searchByKeywords} from '/@/views/system/departUser/depart.user.api';
+import DepartFormModal from '/@/views/system/depart/components/DepartFormModal.vue';
+import {Popconfirm} from 'ant-design-vue';
 
-  const prefixCls = inject('prefixCls');
+const prefixCls = inject('prefixCls');
   const emit = defineEmits(['select', 'rootTreeData']);
   const { createMessage } = useMessage();
   const { handleImportXls, handleExportXls } = useMethods();

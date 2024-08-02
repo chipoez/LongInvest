@@ -1,17 +1,21 @@
 package com.longinvest.modules.financialinstruments.entity;
 
+import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.util.Date;
+import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import io.swagger.v3.oas.annotations.media.Schema;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.jeecgframework.poi.excel.annotation.Excel;
+import org.jeecg.common.aspect.annotation.Dict;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.jeecgframework.poi.excel.annotation.Excel;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.io.Serializable;
 
 /**
  * @Description: 金融商品
@@ -55,15 +59,17 @@ public class FinancialInstruments implements Serializable {
     @Schema(description = "名称")
     private java.lang.String name;
 	/**种类*/
-	@Excel(name = "种类", width = 15)
+	@Excel(name = "种类", width = 15, dicCode = "financial_instrument_type_dict")
+	@Dict(dicCode = "financial_instrument_type_dict")
     @Schema(description = "种类")
-    private java.lang.String type;
+    private java.lang.Integer type;
 	/**代码*/
 	@Excel(name = "代码", width = 15)
     @Schema(description = "代码")
     private java.lang.String tickerSymbol;
 	/**货币单位*/
-	@Excel(name = "货币单位", width = 15)
+	@Excel(name = "货币单位", width = 15, dicCode = "currency_dict")
+	@Dict(dicCode = "currency_dict")
     @Schema(description = "货币单位")
     private java.lang.String currency;
 	/**限购*/

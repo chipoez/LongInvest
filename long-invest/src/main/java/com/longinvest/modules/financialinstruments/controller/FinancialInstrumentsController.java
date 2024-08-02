@@ -1,25 +1,41 @@
 package com.longinvest.modules.financialinstruments.controller;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.jeecg.common.api.vo.Result;
+import org.jeecg.common.system.query.QueryGenerator;
+import org.jeecg.common.util.oConvertUtils;
+import com.longinvest.modules.financialinstruments.entity.FinancialInstruments;
+import com.longinvest.modules.financialinstruments.service.IFinancialInstrumentsService;
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.longinvest.modules.financialinstruments.entity.FinancialInstruments;
-import com.longinvest.modules.financialinstruments.service.IFinancialInstrumentsService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.jeecg.common.api.vo.Result;
-import org.jeecg.common.aspect.annotation.AutoLog;
+
+import org.jeecgframework.poi.excel.ExcelImportUtil;
+import org.jeecgframework.poi.excel.def.NormalExcelConstants;
+import org.jeecgframework.poi.excel.entity.ExportParams;
+import org.jeecgframework.poi.excel.entity.ImportParams;
+import org.jeecgframework.poi.excel.view.JeecgEntityExcelView;
 import org.jeecg.common.system.base.controller.JeecgController;
-import org.jeecg.common.system.query.QueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Arrays;
+import com.alibaba.fastjson.JSON;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.jeecg.common.aspect.annotation.AutoLog;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 
  /**
  * @Description: 金融商品
@@ -34,7 +50,7 @@ import java.util.Arrays;
 public class FinancialInstrumentsController extends JeecgController<FinancialInstruments, IFinancialInstrumentsService> {
 	@Autowired
 	private IFinancialInstrumentsService financialInstrumentsService;
-
+	
 	/**
 	 * 分页列表查询
 	 *
@@ -56,7 +72,7 @@ public class FinancialInstrumentsController extends JeecgController<FinancialIns
 		IPage<FinancialInstruments> pageList = financialInstrumentsService.page(page, queryWrapper);
 		return Result.OK(pageList);
 	}
-
+	
 	/**
 	 *   添加
 	 *
@@ -71,7 +87,7 @@ public class FinancialInstrumentsController extends JeecgController<FinancialIns
 		financialInstrumentsService.save(financialInstruments);
 		return Result.OK("添加成功！");
 	}
-
+	
 	/**
 	 *  编辑
 	 *
@@ -86,7 +102,7 @@ public class FinancialInstrumentsController extends JeecgController<FinancialIns
 		financialInstrumentsService.updateById(financialInstruments);
 		return Result.OK("编辑成功!");
 	}
-
+	
 	/**
 	 *   通过id删除
 	 *
@@ -101,7 +117,7 @@ public class FinancialInstrumentsController extends JeecgController<FinancialIns
 		financialInstrumentsService.removeById(id);
 		return Result.OK("删除成功!");
 	}
-
+	
 	/**
 	 *  批量删除
 	 *
@@ -116,7 +132,7 @@ public class FinancialInstrumentsController extends JeecgController<FinancialIns
 		this.financialInstrumentsService.removeByIds(Arrays.asList(ids.split(",")));
 		return Result.OK("批量删除成功!");
 	}
-
+	
 	/**
 	 * 通过id查询
 	 *

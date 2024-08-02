@@ -33,20 +33,20 @@
 </template>
 
 <script lang="ts" setup>
-  import { inject, ref, unref, watch, computed, onMounted } from 'vue';
+import {computed, inject, onMounted, unref, watch} from 'vue';
 
-  import { ActionItem, BasicTable, TableAction } from '/@/components/Table';
-  import { useModal } from '/@/components/Modal';
-  import { useDrawer } from '/@/components/Drawer';
-  import { useListPage } from '/@/hooks/system/useListPage';
+import {ActionItem, BasicTable, TableAction} from '/@/components/Table';
+import {useModal} from '/@/components/Modal';
+import {useDrawer} from '/@/components/Drawer';
+import {useListPage} from '/@/hooks/system/useListPage';
 
-  import DepartRoleModal from './DepartRoleModal.vue';
-  import DepartRoleAuthDrawer from './DepartRoleAuthDrawer.vue';
-  import { deleteBatchDepartRole, departRoleList } from '../depart.user.api';
-  import { departRoleColumns, departRoleSearchFormSchema } from '../depart.user.data';
-  import { ColEx } from '/@/components/Form/src/types';
+import DepartRoleModal from './DepartRoleModal.vue';
+import DepartRoleAuthDrawer from './DepartRoleAuthDrawer.vue';
+import {deleteBatchDepartRole, departRoleList} from '../depart.user.api';
+import {departRoleColumns, departRoleSearchFormSchema} from '../depart.user.data';
+import {ColEx} from '/@/components/Form/src/types';
 
-  const prefixCls = inject('prefixCls');
+const prefixCls = inject('prefixCls');
   const props = defineProps({
     data: { require: true, type: Object },
   });

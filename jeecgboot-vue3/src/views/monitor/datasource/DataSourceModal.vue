@@ -15,14 +15,14 @@
   </BasicModal>
 </template>
 <script lang="ts" setup>
-  import { ref, computed, unref } from 'vue';
-  import { BasicModal, useModalInner } from '/@/components/Modal';
-  import { BasicForm, useForm } from '/@/components/Form/index';
-  import { formSchema } from './datasource.data';
-  import { saveOrUpdateDataSource, getDataSourceById, testConnection } from './datasource.api';
-  import { useMessage } from '/@/hooks/web/useMessage';
+import {computed, ref, unref} from 'vue';
+import {BasicModal, useModalInner} from '/@/components/Modal';
+import {BasicForm, useForm} from '/@/components/Form/index';
+import {formSchema} from './datasource.data';
+import {getDataSourceById, saveOrUpdateDataSource, testConnection} from './datasource.api';
+import {useMessage} from '/@/hooks/web/useMessage';
 
-  const { createMessage } = useMessage();
+const { createMessage } = useMessage();
   // Emits声明
   const emit = defineEmits(['register', 'success']);
   const isUpdate = ref(true);

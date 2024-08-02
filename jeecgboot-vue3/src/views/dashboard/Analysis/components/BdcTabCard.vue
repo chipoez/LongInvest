@@ -54,14 +54,14 @@
   </a-card>
 </template>
 <script lang="ts" setup>
-  import { ref, computed } from 'vue';
-  import Bar from '/@/components/chart/Bar.vue';
-  import BarMulti from '/@/components/chart/BarMulti.vue';
-  import Gauge from '/@/components/chart/Gauge.vue';
-  import QuickNav from './QuickNav.vue';
-  import { useRootSetting } from '/@/hooks/setting/useRootSetting';
+import {computed, ref} from 'vue';
+import Bar from '/@/components/chart/Bar.vue';
+import BarMulti from '/@/components/chart/BarMulti.vue';
+import Gauge from '/@/components/chart/Gauge.vue';
+import QuickNav from './QuickNav.vue';
+import {useRootSetting} from '/@/hooks/setting/useRootSetting';
 
-  defineProps({
+defineProps({
     loading: {
       type: Boolean,
     },

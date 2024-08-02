@@ -47,15 +47,15 @@
 </template>
 
 <script lang="ts" setup>
-  import { watch, computed, inject, ref, nextTick } from 'vue';
-  import { useDrawer } from '/@/components/Drawer';
-  import { BasicTree } from '/@/components/Tree/index';
-  import DepartDataRuleDrawer from './DepartDataRuleDrawer.vue';
-  import { queryRoleTreeList, queryDepartPermission, saveDepartPermission } from '../depart.api';
-  import { useDesign } from '/@/hooks/web/useDesign';
-  import { translateTitle } from '/@/utils/common/compUtils';
+import {computed, nextTick, ref, watch} from 'vue';
+import {useDrawer} from '/@/components/Drawer';
+import {BasicTree} from '/@/components/Tree/index';
+import DepartDataRuleDrawer from './DepartDataRuleDrawer.vue';
+import {queryDepartPermission, queryRoleTreeList, saveDepartPermission} from '../depart.api';
+import {useDesign} from '/@/hooks/web/useDesign';
+import {translateTitle} from '/@/utils/common/compUtils';
 
-  const { prefixCls } = useDesign('j-depart-form-content');
+const { prefixCls } = useDesign('j-depart-form-content');
   const props = defineProps({
     data: { type: Object, default: () => ({}) },
   });

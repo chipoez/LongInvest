@@ -63,39 +63,43 @@
   </div>
 </template>
 <script lang="ts">
-  import type { BasicTableProps, TableActionType, SizeType, ColumnChangeParam, BasicColumn } from './types/table';
+import type {
+  BasicColumn,
+  BasicTableProps,
+  ColumnChangeParam,
+  SizeType,
+  TableActionType
+} from './types/table';
+import {InnerHandlers} from './types/table';
 
-  import { defineComponent, ref, computed, unref, toRaw, inject, watchEffect, watch, onUnmounted, onMounted, nextTick } from 'vue';
-  import { Table } from 'ant-design-vue';
-  import { BasicForm, useForm } from '/@/components/Form/index';
-  import { PageWrapperFixedHeightKey } from '/@/components/Page/injectionKey';
-  import CustomSelectHeader from './components/CustomSelectHeader.vue'
-  import expandIcon from './components/ExpandIcon';
-  import HeaderCell from './components/HeaderCell.vue';
-  import TableSummary from './components/TableSummary';
-  import { InnerHandlers } from './types/table';
-  import { usePagination } from './hooks/usePagination';
-  import { useColumns } from './hooks/useColumns';
-  import { useDataSource } from './hooks/useDataSource';
-  import { useLoading } from './hooks/useLoading';
-  import { useRowSelection } from './hooks/useRowSelection';
-  import { useTableScroll } from './hooks/useTableScroll';
-  import { useCustomRow } from './hooks/useCustomRow';
-  import { useTableStyle } from './hooks/useTableStyle';
-  import { useTableHeader } from './hooks/useTableHeader';
-  import { useTableExpand } from './hooks/useTableExpand';
-  import { createTableContext } from './hooks/useTableContext';
-  import { useTableFooter } from './hooks/useTableFooter';
-  import { useTableForm } from './hooks/useTableForm';
-  import { useDesign } from '/@/hooks/web/useDesign';
-  import { useCustomSelection } from "./hooks/useCustomSelection";
+import {computed, defineComponent, inject, nextTick, ref, toRaw, unref, watchEffect} from 'vue';
+import {Table} from 'ant-design-vue';
+import {BasicForm, useForm} from '/@/components/Form/index';
+import {PageWrapperFixedHeightKey} from '/@/components/Page/injectionKey';
+import CustomSelectHeader from './components/CustomSelectHeader.vue'
+import HeaderCell from './components/HeaderCell.vue';
+import TableSummary from './components/TableSummary';
+import {usePagination} from './hooks/usePagination';
+import {useColumns} from './hooks/useColumns';
+import {useDataSource} from './hooks/useDataSource';
+import {useLoading} from './hooks/useLoading';
+import {useTableScroll} from './hooks/useTableScroll';
+import {useCustomRow} from './hooks/useCustomRow';
+import {useTableStyle} from './hooks/useTableStyle';
+import {useTableHeader} from './hooks/useTableHeader';
+import {useTableExpand} from './hooks/useTableExpand';
+import {createTableContext} from './hooks/useTableContext';
+import {useTableFooter} from './hooks/useTableFooter';
+import {useTableForm} from './hooks/useTableForm';
+import {useDesign} from '/@/hooks/web/useDesign';
+import {useCustomSelection} from "./hooks/useCustomSelection";
 
-  import { omit, pick } from 'lodash-es';
-  import { basicProps } from './props';
-  import { isFunction } from '/@/utils/is';
-  import { warn } from '/@/utils/log';
+import {omit, pick} from 'lodash-es';
+import {basicProps} from './props';
+import {isFunction} from '/@/utils/is';
+import {warn} from '/@/utils/log';
 
-  export default defineComponent({
+export default defineComponent({
     components: {
       Table,
       BasicForm,
@@ -291,7 +295,7 @@
         /*if (slots.expandedRowRender) {
           propsData = omit(propsData, 'scroll');
         }*/
-        //update-end---author:wangshuai ---date:20230214  for：[QQYUN-4237]代码生成 内嵌子表模式 没有滚动条------------ 
+        //update-end---author:wangshuai ---date:20230214  for：[QQYUN-4237]代码生成 内嵌子表模式 没有滚动条------------
 
         // update-begin--author:sunjianlei---date:220230630---for：【QQYUN-5571】自封装选择列，解决数据行选择卡顿问题
         // 自定义选择列，需要去掉原生的

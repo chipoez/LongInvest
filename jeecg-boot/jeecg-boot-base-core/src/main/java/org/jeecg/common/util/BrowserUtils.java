@@ -1,16 +1,16 @@
 package org.jeecg.common.util;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import jakarta.servlet.http.HttpServletRequest;
-
 /**
- * 
+ *
  * @Author 张代浩
- * 
+ *
  */
 public class BrowserUtils {
 
@@ -27,7 +27,7 @@ public class BrowserUtils {
 
 	/**
 	 * 获取IE版本
-	 * 
+	 *
 	 * @param request
 	 * @return
 	 */
@@ -51,7 +51,7 @@ public class BrowserUtils {
 
 	/**
 	 * 获取浏览器类型
-	 * 
+	 *
 	 * @param request
 	 * @return
 	 */
@@ -169,26 +169,26 @@ public class BrowserUtils {
 		return m.find();
 	}
 
-	
+
 	private static Map<String, String> langMap = new HashMap<String, String>();
 	private final static String ZH = "zh";
 	private final static String ZH_CN = "zh-cn";
-	
+
 	private final static String EN = "en";
 	private final static String EN_US = "en";
-	
-	
-	static 
+
+
+	static
 	{
 		langMap.put(ZH, ZH_CN);
 		langMap.put(EN, EN_US);
 	}
-	
+
 	public static String getBrowserLanguage(HttpServletRequest request) {
-		
+
 		String browserLang = request.getLocale().getLanguage();
 		String browserLangCode = (String)langMap.get(browserLang);
-		
+
 		if(browserLangCode == null)
 		{
 			browserLangCode = EN_US;

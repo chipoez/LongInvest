@@ -7,12 +7,12 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref } from 'vue';
-  import { defHttp } from '/@/utils/http/axios';
-  import { PageWrapper } from '/@/components/Page';
-  import { BasicTable, useTable } from '/@/components/Table';
+import {ref} from 'vue';
+import {defHttp} from '/@/utils/http/axios';
+import {PageWrapper} from '/@/components/Page';
+import {BasicTable, useTable} from '/@/components/Table';
 
-  const url = '/mock/api/asynTreeList';
+const url = '/mock/api/asynTreeList';
 
   const loading = ref<boolean>(false);
   const dataSource = ref<any[]>([]);

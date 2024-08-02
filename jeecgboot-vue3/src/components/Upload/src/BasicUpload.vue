@@ -26,18 +26,18 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, ref, watch, unref, computed } from 'vue';
-  import UploadModal from './UploadModal.vue';
-  import UploadPreviewModal from './UploadPreviewModal.vue';
-  import { Icon } from '/@/components/Icon';
-  import { Tooltip } from 'ant-design-vue';
-  import { useModal } from '/@/components/Modal';
-  import { uploadContainerProps } from './props';
-  import { omit } from 'lodash-es';
-  import { useI18n } from '/@/hooks/web/useI18n';
-  import { isArray } from '/@/utils/is';
+import {computed, defineComponent, ref, unref, watch} from 'vue';
+import UploadModal from './UploadModal.vue';
+import UploadPreviewModal from './UploadPreviewModal.vue';
+import {Icon} from '/@/components/Icon';
+import {Tooltip} from 'ant-design-vue';
+import {useModal} from '/@/components/Modal';
+import {uploadContainerProps} from './props';
+import {omit} from 'lodash-es';
+import {useI18n} from '/@/hooks/web/useI18n';
+import {isArray} from '/@/utils/is';
 
-  export default defineComponent({
+export default defineComponent({
     name: 'BasicUpload',
     components: { UploadModal, UploadPreviewModal, Icon, Tooltip },
     props: uploadContainerProps,

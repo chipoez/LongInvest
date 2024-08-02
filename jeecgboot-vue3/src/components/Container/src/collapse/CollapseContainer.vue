@@ -23,18 +23,18 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import type { PropType } from 'vue';
-  import { ref } from 'vue';
-  // component
-  import { Skeleton } from 'ant-design-vue';
-  import { CollapseTransition } from '/@/components/Transition';
-  import CollapseHeader from './CollapseHeader.vue';
-  import { triggerWindowResize } from '/@/utils/event';
-  // hook
-  import { useTimeoutFn } from '/@/hooks/core/useTimeout';
-  import { useDesign } from '/@/hooks/web/useDesign';
+import type {PropType} from 'vue';
+import {ref} from 'vue';
+// component
+import {Skeleton} from 'ant-design-vue';
+import {CollapseTransition} from '/@/components/Transition';
+import CollapseHeader from './CollapseHeader.vue';
+import {triggerWindowResize} from '/@/utils/event';
+// hook
+import {useTimeoutFn} from '/@/hooks/core/useTimeout';
+import {useDesign} from '/@/hooks/web/useDesign';
 
-  const props = defineProps({
+const props = defineProps({
     title: { type: String, default: '' },
     loading: { type: Boolean },
     /**

@@ -1,5 +1,5 @@
-import { defHttp } from '/@/utils/http/axios';
-import { GetAccountInfoModel } from './model/accountModel';
+import {defHttp} from '/@/utils/http/axios';
+import {GetAccountInfoModel} from './model/accountModel';
 
 enum Api {
   ACCOUNT_INFO = '/mock/account/getAccountInfo',

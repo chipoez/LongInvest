@@ -14,12 +14,11 @@
 </template>
 
 <script lang="ts" setup>
-  //引入依赖
-  import { useForm, BasicForm, FormSchema } from '/@/components/Form';
-  import { CollapseContainer } from '/@/components/Container';
-  import { ref } from 'vue';
+//引入依赖
+import {BasicForm, FormSchema, useForm} from '/@/components/Form';
+import {ref} from 'vue';
 
-  //自定义表单字段
+//自定义表单字段
   const formSchemas: FormSchema[] = [
     {
       field: 'name1',

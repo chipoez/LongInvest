@@ -8,13 +8,13 @@
 </template>
 
 <script setup lang="ts">
-  import { computed, onMounted, onUnmounted, onUpdated, ref } from 'vue';
-  import MarkdownIt from 'markdown-it';
-  import mdKatex from '@traptitech/markdown-it-katex';
-  import mila from 'markdown-it-link-attributes';
-  import hljs from 'highlight.js';
+import {computed, onMounted, onUnmounted, onUpdated, ref} from 'vue';
+import MarkdownIt from 'markdown-it';
+import mdKatex from '@traptitech/markdown-it-katex';
+import mila from 'markdown-it-link-attributes';
+import hljs from 'highlight.js';
 
-  const props = defineProps(['dateTime', 'text', 'inversion', 'error', 'loading']);
+const props = defineProps(['dateTime', 'text', 'inversion', 'error', 'loading']);
   const textRef = ref();
   const mdi = new MarkdownIt({
     html: false,

@@ -20,11 +20,11 @@
   </PageWrapper>
 </template>
 <script lang="ts">
-  import { defineComponent, ref, unref } from 'vue';
-  import { ScrollContainer, ScrollActionType } from '/@/components/Container/index';
-  import { PageWrapper } from '/@/components/Page';
+import {defineComponent, ref, unref} from 'vue';
+import {ScrollActionType, ScrollContainer} from '/@/components/Container/index';
+import {PageWrapper} from '/@/components/Page';
 
-  export default defineComponent({
+export default defineComponent({
     components: { ScrollContainer, PageWrapper },
     setup() {
       const scrollRef = ref<Nullable<ScrollActionType>>(null);

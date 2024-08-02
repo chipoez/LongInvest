@@ -142,22 +142,22 @@
 </template>
 
 <script setup lang="ts">
-  import type { Ref } from 'vue';
-  import { computed, ref, createVNode, onUnmounted, onMounted } from 'vue';
-  import { useScroll } from '../hooks/useScroll';
-  import { EventSourcePolyfill } from 'event-source-polyfill';
-  import { ConfigEnum } from '/@/enums/httpEnum';
-  import { getToken } from '/@/utils/auth';
-  import { getAppEnvConfig } from '/@/utils/env';
-  import chatMessage from './chatMessage.vue';
-  import presetQuestion from './presetQuestion.vue';
-  import { DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons-vue';
-  import { message, Modal, Tabs } from 'ant-design-vue';
-  import '../style/github-markdown.less';
-  import '../style/highlight.less';
-  import '../style/style.less';
+import type {Ref} from 'vue';
+import {computed, createVNode, onMounted, onUnmounted, ref} from 'vue';
+import {useScroll} from '../hooks/useScroll';
+import {EventSourcePolyfill} from 'event-source-polyfill';
+import {ConfigEnum} from '/@/enums/httpEnum';
+import {getToken} from '/@/utils/auth';
+import {getAppEnvConfig} from '/@/utils/env';
+import chatMessage from './chatMessage.vue';
+import presetQuestion from './presetQuestion.vue';
+import {ExclamationCircleOutlined} from '@ant-design/icons-vue';
+import {message, Modal} from 'ant-design-vue';
+import '../style/github-markdown.less';
+import '../style/highlight.less';
+import '../style/style.less';
 
-  const props = defineProps(['chatData', 'uuid', 'dataSource']);
+const props = defineProps(['chatData', 'uuid', 'dataSource']);
   const { scrollRef, scrollToBottom, scrollToBottomIfAtBottom } = useScroll();
   const prompt = ref<string>('');
   const loading = ref<boolean>(false);

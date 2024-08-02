@@ -3,12 +3,12 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref, inject, onMounted, watch } from 'vue';
-  import { queryIdTree } from '../depart.user.api';
-  import { useBaseInfoForm } from '../depart.user.data';
-  import { Description, useDescription } from '/@/components/Description/index';
+import {inject, onMounted, ref, watch} from 'vue';
+import {queryIdTree} from '../depart.user.api';
+import {useBaseInfoForm} from '../depart.user.data';
+import {Description, useDescription} from '/@/components/Description/index';
 
-  const prefixCls = inject('prefixCls');
+const prefixCls = inject('prefixCls');
   const props = defineProps({
     data: { require: true, type: Object },
   });

@@ -5,11 +5,10 @@
 </template>
 
 <script lang="ts" setup>
-  //引入依赖
-  import { useForm, BasicForm, FormSchema } from '/@/components/Form';
-  import { duplicateCheck } from '/@/views/system/user/user.api';
+//引入依赖
+import {BasicForm, FormSchema, useForm} from '/@/components/Form';
 
-  //自定义表单字段
+//自定义表单字段
   const formSchemas: FormSchema[] = [
     {
       field: 'visitor',

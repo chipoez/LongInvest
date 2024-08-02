@@ -1,5 +1,5 @@
-import { FormSchema } from '/@/components/Form/index';
-import { rules } from '/@/utils/helper/validator';
+import {FormSchema} from '/@/components/Form/index';
+import {rules} from '/@/utils/helper/validator';
 
 export interface ListItem {
   key: string;

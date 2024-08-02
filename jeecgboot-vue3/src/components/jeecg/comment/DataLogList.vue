@@ -2,7 +2,7 @@
     <div class="data-log-scroll" :style="{'height': height+'px'}">
         <div class="data-log-content">
             <div class="logbox">
-                
+
                 <div class="log-item" v-for="(item, index) in dataList">
                     <span class="log-item-icon">
                         <plus-outlined v-if="lastIndex == index" style="margin-top:3px"/>
@@ -19,25 +19,25 @@
                     </div>
                 </div>
 
-                
+
             </div>
         </div>
     </div>
 </template>
 
 <script>
-  import { PlusOutlined, EditOutlined } from '@ant-design/icons-vue';
-  import { getModalHeight, getLogList } from './useComment'
-  import {inject, ref, watchEffect} from 'vue'
-  import { propTypes } from '/@/utils/propTypes';
-  import { Tooltip } from 'ant-design-vue';
-  // import dayjs from 'dayjs';
+import {EditOutlined, PlusOutlined} from '@ant-design/icons-vue';
+import {getLogList, getModalHeight} from './useComment'
+import {inject, ref, watchEffect} from 'vue'
+import {propTypes} from '/@/utils/propTypes';
+import {Tooltip} from 'ant-design-vue';
+// import dayjs from 'dayjs';
   // import relativeTime from 'dayjs/plugin/relativeTime';
   // import customParseFormat from 'dayjs/plugin/customParseFormat';
   // dayjs.locale('zh');
   // dayjs.extend(relativeTime);
   // dayjs.extend(customParseFormat);
-  
+
   export default {
     name: "DataLogList",
     components:{
@@ -79,7 +79,7 @@
           dataList.value = arr;
         }
       }
-      
+
       watchEffect(() => {
         if(props.datetime){
           if (props.tableName && props.dataId) {
@@ -88,8 +88,8 @@
           }
         }
       });
-      
-      
+
+
 
       function getDateDiff(item) {
         if (item.createTime) {
@@ -98,11 +98,11 @@
         }
         return '';
       }
-      
+
       function handleClickPerson() {
         console.log('此功能未开放')
       }
-      
+
       return {
         height,
         lastIndex,

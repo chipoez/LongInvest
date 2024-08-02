@@ -16,13 +16,13 @@
 </template>
 
 <script lang="ts" setup>
-  //引入依赖
-  import { useForm, BasicForm, FormSchema } from '/@/components/Form';
-  import JEditor from '/@/components/Form/src/jeecg/components/JEditor.vue';
-  import { h } from 'vue';
-  import { Input } from 'ant-design-vue';
+//引入依赖
+import {BasicForm, FormSchema, useForm} from '/@/components/Form';
+import JEditor from '/@/components/Form/src/jeecg/components/JEditor.vue';
+import {h} from 'vue';
+import {Input} from 'ant-design-vue';
 
-  //自定义表单字段
+//自定义表单字段
   const formSchemas: FormSchema[] = [
     {
       field: 'productName',

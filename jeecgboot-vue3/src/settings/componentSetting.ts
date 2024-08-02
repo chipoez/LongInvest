@@ -1,6 +1,6 @@
 // 用于配置某些组件的常规配置，而无需修改组件
 
-import type { SorterResult } from '../components/Table';
+import type {SorterResult} from '../components/Table';
 
 export default {
   // 表格配置

@@ -22,22 +22,22 @@
   </CollapseContainer>
 </template>
 <script lang="ts">
-  import { Button, Row, Col } from 'ant-design-vue';
-  import { computed, defineComponent, onMounted } from 'vue';
-  import { BasicForm, useForm } from '/@/components/Form/index';
-  import { CollapseContainer } from '/@/components/Container';
-  import { CropperAvatar } from '/@/components/Cropper';
+import {Button, Col, Row} from 'ant-design-vue';
+import {computed, defineComponent, onMounted} from 'vue';
+import {BasicForm, useForm} from '/@/components/Form/index';
+import {CollapseContainer} from '/@/components/Container';
+import {CropperAvatar} from '/@/components/Cropper';
 
-  import { useMessage } from '/@/hooks/web/useMessage';
+import {useMessage} from '/@/hooks/web/useMessage';
 
-  import headerImg from '/@/assets/images/header.jpg';
-  import { defHttp } from '/@/utils/http/axios';
-  import { baseSetschemas } from './data';
-  import { useUserStore } from '/@/store/modules/user';
-  import { uploadImg } from '/@/api/sys/upload';
-  import { getFileAccessHttpUrl } from '/@/utils/common/compUtils';
+import headerImg from '/@/assets/images/header.jpg';
+import {defHttp} from '/@/utils/http/axios';
+import {baseSetschemas} from './data';
+import {useUserStore} from '/@/store/modules/user';
+import {uploadImg} from '/@/api/sys/upload';
+import {getFileAccessHttpUrl} from '/@/utils/common/compUtils';
 
-  export default defineComponent({
+export default defineComponent({
     components: {
       BasicForm,
       CollapseContainer,

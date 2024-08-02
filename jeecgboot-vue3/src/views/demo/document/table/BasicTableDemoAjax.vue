@@ -15,10 +15,10 @@
 </template>
 
 <script lang="ts" name="basic-table-demo" setup>
-  import { ActionItem, BasicColumn, BasicTable, FormSchema, TableAction } from '/@/components/Table';
-  import { useListPage } from '/@/hooks/system/useListPage';
-  import { defHttp } from '/@/utils/http/axios';
-  //定义表格列
+import {ActionItem, BasicColumn, BasicTable, FormSchema, TableAction} from '/@/components/Table';
+import {useListPage} from '/@/hooks/system/useListPage';
+import {defHttp} from '/@/utils/http/axios';
+//定义表格列
   const columns: BasicColumn[] = [
     {
       title: '姓名',

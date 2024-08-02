@@ -1,6 +1,5 @@
-import { BasicColumn } from '/@/components/Table';
-import { FormSchema } from '/@/components/Table';
-import { render } from '/@/utils/common/renderUtils';
+import {BasicColumn, FormSchema} from '/@/components/Table';
+import {render} from '/@/utils/common/renderUtils';
 
 export const columns: BasicColumn[] = [
   {

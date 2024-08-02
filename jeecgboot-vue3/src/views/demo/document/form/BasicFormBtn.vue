@@ -17,11 +17,10 @@
 </template>
 
 <script lang="ts" setup>
-  //引入依赖
-  import { useForm, BasicForm, FormSchema } from '/@/components/Form';
-  import { CollapseContainer } from '/@/components/Container';
+//引入依赖
+import {BasicForm, useForm} from '/@/components/Form';
 
-  /**
+/**
    * BasicForm绑定注册;
    * setProps方法可以动态设置useForm中的属性
    */

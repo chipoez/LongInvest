@@ -29,11 +29,11 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, ref } from 'vue';
-  import { BasicTable, ColumnChangeParam } from '/@/components/Table';
-  import { getBasicColumns, getBasicData } from './tableData';
+import {defineComponent, ref} from 'vue';
+import {BasicTable, ColumnChangeParam} from '/@/components/Table';
+import {getBasicColumns, getBasicData} from './tableData';
 
-  export default defineComponent({
+export default defineComponent({
     components: { BasicTable },
     setup() {
       const canResize = ref(false);

@@ -37,38 +37,48 @@
           <slot></slot>
         </ModalWrapper>
       </a-col>
-      
+
       <a-col :span="commentSpan" class="jeecg-comment-outer">
         <slot name="comment"></slot>
       </a-col>
-      
+
     </a-row>
     <!-- update-end-author:taoyan date:2022-7-18 for:  modal弹窗 支持评论 slot -->
-    
+
     <template #[item]="data" v-for="item in Object.keys(omit($slots, 'default'))">
       <slot :name="item" v-bind="data || {}"></slot>
     </template>
   </Modal>
 </template>
 <script lang="ts">
-  import type { ModalProps, ModalMethods } from './typing';
+import type {ModalMethods, ModalProps} from './typing';
 
-  import { defineComponent, computed, ref, watch, unref, watchEffect, toRef, getCurrentInstance, nextTick } from 'vue';
-  import Modal from './components/Modal';
-  import ModalWrapper from './components/ModalWrapper.vue';
-  import ModalClose from './components/ModalClose.vue';
-  import ModalFooter from './components/ModalFooter.vue';
-  import ModalHeader from './components/ModalHeader.vue';
-  import { isFunction } from '/@/utils/is';
-  import { deepMerge } from '/@/utils';
-  import { basicProps } from './props';
-  import { useFullScreen } from './hooks/useModalFullScreen';
-  import { omit } from 'lodash-es';
-  import { useDesign } from '/@/hooks/web/useDesign';
-  import { useAppInject } from '/@/hooks/web/useAppInject';
+import {
+  computed,
+  defineComponent,
+  getCurrentInstance,
+  nextTick,
+  ref,
+  toRef,
+  unref,
+  watch,
+  watchEffect
+} from 'vue';
+import Modal from './components/Modal';
+import ModalWrapper from './components/ModalWrapper.vue';
+import ModalClose from './components/ModalClose.vue';
+import ModalFooter from './components/ModalFooter.vue';
+import ModalHeader from './components/ModalHeader.vue';
+import {isFunction} from '/@/utils/is';
+import {deepMerge} from '/@/utils';
+import {basicProps} from './props';
+import {useFullScreen} from './hooks/useModalFullScreen';
+import {omit} from 'lodash-es';
+import {useDesign} from '/@/hooks/web/useDesign';
+import {useAppInject} from '/@/hooks/web/useAppInject';
 
 
-  export default defineComponent({
+export default defineComponent({
     name: 'BasicModal',
     components: { Modal, ModalWrapper, ModalClose, ModalFooter, ModalHeader },
     inheritAttrs: false,

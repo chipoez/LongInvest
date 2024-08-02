@@ -1,5 +1,5 @@
-import type { JVxeVueComponent } from './types';
-import { JVxeTypes } from './types/JVxeTypes';
+import type {JVxeVueComponent} from './types';
+import {JVxeTypes} from './types/JVxeTypes';
 
 import JVxeSlotCell from './components/cells/JVxeSlotCell';
 import JVxeNormalCell from './components/cells/JVxeNormalCell.vue';

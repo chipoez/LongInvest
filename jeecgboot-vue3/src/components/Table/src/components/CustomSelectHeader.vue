@@ -14,9 +14,9 @@
   <!-- update-end--author:liaozhiyang---date:20231130---for：【issues/5595】BasicTable组件hideSelectAll: true无法隐藏全选框 -->
 </template>
 <script setup lang="ts">
-  import { computed } from 'vue';
+import {computed} from 'vue';
 
-  const props = defineProps({
+const props = defineProps({
     isRadio: {
       type: Boolean,
       required: true,

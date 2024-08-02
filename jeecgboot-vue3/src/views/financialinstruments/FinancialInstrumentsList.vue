@@ -37,16 +37,16 @@
 </template>
 
 <script lang="ts" name="financialinstruments-financialInstruments" setup>
-import {reactive, ref} from 'vue';
-import {BasicTable, TableAction} from '/@/components/Table';
-import {useModal} from '/@/components/Modal';
-import {useListPage} from '/@/hooks/system/useListPage'
-import FinancialInstrumentsModal from './components/FinancialInstrumentsModal.vue'
-import {columns, searchFormSchema, superQuerySchema} from './FinancialInstruments.data';
-import {batchDelete, deleteOne, getExportUrl, getImportUrl, list} from './FinancialInstruments.api';
-import {useUserStore} from '/@/store/modules/user';
-
-const queryParam = reactive<any>({});
+  import {ref, reactive, computed, unref} from 'vue';
+  import {BasicTable, useTable, TableAction} from '/@/components/Table';
+  import {useModal} from '/@/components/Modal';
+  import { useListPage } from '/@/hooks/system/useListPage'
+  import FinancialInstrumentsModal from './components/FinancialInstrumentsModal.vue'
+  import {columns, searchFormSchema, superQuerySchema} from './FinancialInstruments.data';
+  import {list, deleteOne, batchDelete, getImportUrl,getExportUrl} from './FinancialInstruments.api';
+  import { downloadFile } from '/@/utils/common/renderUtils';
+  import { useUserStore } from '/@/store/modules/user';
+  const queryParam = reactive<any>({});
   const checkedKeys = ref<Array<string | number>>([]);
   const userStore = useUserStore();
   //注册model

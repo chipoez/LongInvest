@@ -14,16 +14,25 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, computed, CSSProperties, unref, ref, watchEffect, watch, PropType } from 'vue';
-  import CopperModal from './CopperModal.vue';
-  import { useDesign } from '/@/hooks/web/useDesign';
-  import { useModal } from '/@/components/Modal';
-  import { useMessage } from '/@/hooks/web/useMessage';
-  import { useI18n } from '/@/hooks/web/useI18n';
-  import type { ButtonProps } from '/@/components/Button';
-  import Icon from '/@/components/Icon';
+import {
+  computed,
+  CSSProperties,
+  defineComponent,
+  PropType,
+  ref,
+  unref,
+  watch,
+  watchEffect
+} from 'vue';
+import CopperModal from './CopperModal.vue';
+import {useDesign} from '/@/hooks/web/useDesign';
+import {useModal} from '/@/components/Modal';
+import {useMessage} from '/@/hooks/web/useMessage';
+import {useI18n} from '/@/hooks/web/useI18n';
+import type {ButtonProps} from '/@/components/Button';
+import Icon from '/@/components/Icon';
 
-  const props = {
+const props = {
     width: { type: [String, Number], default: '200px' },
     value: { type: String },
     showBtn: { type: Boolean, default: true },

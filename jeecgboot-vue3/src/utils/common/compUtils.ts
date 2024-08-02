@@ -1,14 +1,14 @@
-import { useGlobSetting } from '/@/hooks/setting';
-import { merge, random } from 'lodash-es';
-import { isArray } from '/@/utils/is';
-import { FormSchema } from '/@/components/Form';
-import { reactive } from "vue";
-import { getTenantId, getToken } from "/@/utils/auth";
-import { useUserStoreWithOut } from "/@/store/modules/user";
+import {useGlobSetting} from '/@/hooks/setting';
+import {merge, random} from 'lodash-es';
+import {isArray} from '/@/utils/is';
+import {FormSchema} from '/@/components/Form';
+import {reactive} from "vue";
+import {getTenantId, getToken} from "/@/utils/auth";
+import {useUserStoreWithOut} from "/@/store/modules/user";
 
-import { Modal } from "ant-design-vue";
-import { defHttp } from "@/utils/http/axios";
-import { useI18n } from "@/hooks/web/useI18n";
+import {Modal} from "ant-design-vue";
+import {defHttp} from "@/utils/http/axios";
+import {useI18n} from "@/hooks/web/useI18n";
 
 const globSetting = useGlobSetting();
 const baseApiUrl = globSetting.domainUrl;
@@ -471,7 +471,7 @@ export function replaceUserInfoByExpression(expression: string | any[]) {
 
 /**
  * 设置租户缓存，当租户退出的时候
- * 
+ *
  * @param tenantId
  */
 export async function userExitChangeLoginTenantId(tenantId){
@@ -507,7 +507,7 @@ export async function userExitChangeLoginTenantId(tenantId){
 
 /**
  * 我的租户模块需要开启多租户提示
- * 
+ *
  * @param title 标题
  */
 export function tenantSaasMessage(title){

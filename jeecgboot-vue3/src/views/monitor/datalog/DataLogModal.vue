@@ -44,11 +44,12 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { BasicModal, useModal, useModalInner } from '/@/components/Modal';
-  import { queryDataVerList } from './datalog.api';
-  import { reactive, ref, unref } from 'vue';
-  import DataLogCompareModal from './DataLogCompareModal.vue';
-  const dataId1 = ref('');
+import {BasicModal, useModal, useModalInner} from '/@/components/Modal';
+import {queryDataVerList} from './datalog.api';
+import {reactive, ref, unref} from 'vue';
+import DataLogCompareModal from './DataLogCompareModal.vue';
+
+const dataId1 = ref('');
   const dataId2 = ref('');
   const dataId = ref('');
   const dataTable1 = ref('');

@@ -1,5 +1,5 @@
 /* JVxeTable 行编辑 权限 */
-import { usePermissionStoreWithOut } from '/@/store/modules/permission';
+import {usePermissionStoreWithOut} from '/@/store/modules/permission';
 
 const permissionStore = usePermissionStoreWithOut();
 

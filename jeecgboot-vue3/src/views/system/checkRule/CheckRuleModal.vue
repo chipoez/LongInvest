@@ -32,15 +32,15 @@
 </template>
 
 <script lang="ts" setup>
-  import { BasicModal, useModalInner } from '/@/components/Modal';
-  import { BasicForm, useForm } from '/@/components/Form/index';
-  import { computed, ref, unref } from 'vue';
-  import { formSchema } from './check.rule.data';
-  import { saveCheckRule, updateCheckRule } from './check.rule.api';
-  import { JVxeTypes, JVxeColumn, JVxeTableInstance } from '/@/components/jeecg/JVxeTable/types';
-  import { pick } from 'lodash-es';
+import {BasicModal, useModalInner} from '/@/components/Modal';
+import {BasicForm, useForm} from '/@/components/Form/index';
+import {computed, ref, unref} from 'vue';
+import {formSchema} from './check.rule.data';
+import {saveCheckRule, updateCheckRule} from './check.rule.api';
+import {JVxeColumn, JVxeTableInstance, JVxeTypes} from '/@/components/jeecg/JVxeTable/types';
+import {pick} from 'lodash-es';
 
-  //设置标题
+//设置标题
   const title = computed(() => (!unref(isUpdate) ? '新增' : '编辑'));
   // 声明Emits
   const emit = defineEmits(['register', 'success']);

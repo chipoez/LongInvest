@@ -21,15 +21,15 @@
 </template>
 
 <script lang="ts" name="CaptchaModal">
-  import { defineComponent, reactive, ref } from 'vue';
-  import { BasicModal, useModalInner } from '@/components/Modal';
-  import { BasicForm, FormSchema, useForm } from '@/components/Form';
-  import codeImage from '@/assets/images/checkcode.png';
-  import { getCodeInfo } from '@/api/sys/user';
-  import { defHttp } from '@/utils/http/axios';
-  import {useMessage} from "@/hooks/web/useMessage";
+import {defineComponent, reactive, ref} from 'vue';
+import {BasicModal, useModalInner} from '@/components/Modal';
+import {BasicForm, FormSchema, useForm} from '@/components/Form';
+import codeImage from '@/assets/images/checkcode.png';
+import {getCodeInfo} from '@/api/sys/user';
+import {defHttp} from '@/utils/http/axios';
+import {useMessage} from "@/hooks/web/useMessage";
 
-  export default defineComponent({
+export default defineComponent({
     name: 'CaptchaModal',
     components: { BasicModal, BasicForm },
     emits: ['ok','register'],
@@ -70,7 +70,7 @@
         checkKey: -1,
       });
       const { createMessage } = useMessage();
-      
+
       /**
        * 获取验证码
        */

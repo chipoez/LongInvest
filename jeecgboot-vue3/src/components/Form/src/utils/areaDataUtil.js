@@ -1,5 +1,5 @@
 import REGION_DATA from 'china-area-data';
-import { cloneDeep } from 'lodash-es';
+import {cloneDeep} from 'lodash-es';
 
 // code转汉字大对象
 const CodeToText = {};

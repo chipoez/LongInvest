@@ -41,15 +41,15 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, unref, ref, reactive, watch } from 'vue';
-  import { BasicModal, useModalInner } from '/@/components/Modal';
-  import { queryCompareList, queryDataVerList } from './datalog.api';
-  import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent';
-  import { useAttrs } from '/@/hooks/core/useAttrs';
-  import { selectProps } from '/@/components/Form/src/jeecg/props/props';
-  import { useMessage } from '/@/hooks/web/useMessage';
+import {defineComponent, reactive, ref, unref} from 'vue';
+import {BasicModal, useModalInner} from '/@/components/Modal';
+import {queryCompareList, queryDataVerList} from './datalog.api';
+import {createAsyncComponent} from '/@/utils/factory/createAsyncComponent';
+import {useAttrs} from '/@/hooks/core/useAttrs';
+import {selectProps} from '/@/components/Form/src/jeecg/props/props';
+import {useMessage} from '/@/hooks/web/useMessage';
 
-  export default defineComponent({
+export default defineComponent({
     name: 'DataLogCompareModal',
     components: {
       //此处需要异步加载BasicTable

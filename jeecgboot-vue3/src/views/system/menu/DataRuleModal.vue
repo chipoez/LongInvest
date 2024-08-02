@@ -4,12 +4,12 @@
   </BasicModal>
 </template>
 <script lang="ts" setup>
-  import { ref, computed, unref } from 'vue';
-  import { BasicModal, useModalInner } from '/@/components/Modal';
-  import { BasicForm, useForm } from '/@/components/Form/index';
-  import { dataRuleFormSchema } from './menu.data';
-  import { saveOrUpdateRule } from './menu.api';
-  // 声明Emits
+import {computed, ref, unref} from 'vue';
+import {BasicModal, useModalInner} from '/@/components/Modal';
+import {BasicForm, useForm} from '/@/components/Form/index';
+import {dataRuleFormSchema} from './menu.data';
+import {saveOrUpdateRule} from './menu.api';
+// 声明Emits
   const emit = defineEmits(['success', 'register']);
   const props = defineProps({ permissionId: String });
   const isUpdate = ref(true);

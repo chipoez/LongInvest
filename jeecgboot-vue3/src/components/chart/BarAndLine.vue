@@ -2,10 +2,11 @@
   <div ref="chartRef" :style="{ height, width }"></div>
 </template>
 <script lang="ts">
-  import { defineComponent, PropType, ref, Ref, reactive, watchEffect } from 'vue';
-  import { useECharts } from '/@/hooks/web/useECharts';
-  import { cloneDeep } from 'lodash-es';
-  export default defineComponent({
+import {defineComponent, PropType, reactive, Ref, ref, watchEffect} from 'vue';
+import {useECharts} from '/@/hooks/web/useECharts';
+import {cloneDeep} from 'lodash-es';
+
+export default defineComponent({
     name: 'barAndLine',
     props: {
       chartData: {

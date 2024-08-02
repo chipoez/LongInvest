@@ -3,12 +3,12 @@
 </template>
 
 <script lang="ts">
-  import { computed, defineComponent } from 'vue';
-  import { Icon } from '/@/components/Icon';
-  import { isEmpty } from '/@/utils/is';
-  import { propTypes } from '/@/utils/propTypes';
+import {computed, defineComponent} from 'vue';
+import {Icon} from '/@/components/Icon';
+import {isEmpty} from '/@/utils/is';
+import {propTypes} from '/@/utils/propTypes';
 
-  export default defineComponent({
+export default defineComponent({
     name: 'AIcon',
     components: { Icon },
     props: {

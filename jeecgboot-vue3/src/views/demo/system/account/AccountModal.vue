@@ -4,13 +4,13 @@
   </BasicModal>
 </template>
 <script lang="ts">
-  import { defineComponent, ref, computed, unref } from 'vue';
-  import { BasicModal, useModalInner } from '/@/components/Modal';
-  import { BasicForm, useForm } from '/@/components/Form/index';
-  import { accountFormSchema } from './account.data';
-  import { getDeptList } from '/@/api/demo/system';
+import {computed, defineComponent, ref, unref} from 'vue';
+import {BasicModal, useModalInner} from '/@/components/Modal';
+import {BasicForm, useForm} from '/@/components/Form/index';
+import {accountFormSchema} from './account.data';
+import {getDeptList} from '/@/api/demo/system';
 
-  export default defineComponent({
+export default defineComponent({
     name: 'AccountModal',
     components: { BasicModal, BasicForm },
     emits: ['success', 'register'],

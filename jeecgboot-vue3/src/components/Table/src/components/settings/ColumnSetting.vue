@@ -90,25 +90,25 @@
   </Tooltip>
 </template>
 <script lang="ts">
-  import type { BasicColumn, ColumnChangeParam } from '../../types/table';
-  import { defineComponent, ref, reactive, toRefs, watchEffect, nextTick, unref, computed } from 'vue';
-  import { Tooltip, Popover, Checkbox, Divider } from 'ant-design-vue';
-  import type { CheckboxChangeEvent } from 'ant-design-vue/lib/checkbox/interface';
-  import { SettingOutlined, DragOutlined } from '@ant-design/icons-vue';
-  import { Icon } from '/@/components/Icon';
-  import { ScrollContainer } from '/@/components/Container';
-  import { useI18n } from '/@/hooks/web/useI18n';
-  import { useTableContext } from '../../hooks/useTableContext';
-  import { useColumnsCache } from '../../hooks/useColumnsCache';
-  import { useDesign } from '/@/hooks/web/useDesign';
-  // import { useSortable } from '/@/hooks/web/useSortable';
-  import { isFunction, isNullAndUnDef } from '/@/utils/is';
-  import { getPopupContainer as getParentContainer } from '/@/utils';
-  import { cloneDeep, omit } from 'lodash-es';
-  import Sortablejs from 'sortablejs';
-  import type Sortable from 'sortablejs';
+import type {BasicColumn, ColumnChangeParam} from '../../types/table';
+import {computed, defineComponent, reactive, ref, toRefs, unref, watchEffect} from 'vue';
+import {Checkbox, Divider, Popover, Tooltip} from 'ant-design-vue';
+import type {CheckboxChangeEvent} from 'ant-design-vue/lib/checkbox/interface';
+import {DragOutlined, SettingOutlined} from '@ant-design/icons-vue';
+import {Icon} from '/@/components/Icon';
+import {ScrollContainer} from '/@/components/Container';
+import {useI18n} from '/@/hooks/web/useI18n';
+import {useTableContext} from '../../hooks/useTableContext';
+import {useColumnsCache} from '../../hooks/useColumnsCache';
+import {useDesign} from '/@/hooks/web/useDesign';
+// import { useSortable } from '/@/hooks/web/useSortable';
+import {isFunction, isNullAndUnDef} from '/@/utils/is';
+import {getPopupContainer as getParentContainer} from '/@/utils';
+import {cloneDeep, omit} from 'lodash-es';
+import type Sortable from 'sortablejs';
+import Sortablejs from 'sortablejs';
 
-  interface State {
+interface State {
     checkAll: boolean;
     isInit?: boolean;
     checkedList: string[];

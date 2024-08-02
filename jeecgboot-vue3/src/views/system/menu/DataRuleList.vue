@@ -12,16 +12,17 @@
   <DataRuleModal @register="registerModal" @success="reload" :permissionId="permissionId" />
 </template>
 <script lang="ts" setup>
-  import { ref, unref } from 'vue';
-  import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
-  import { BasicTable, useTable, TableAction } from '/@/components/Table';
-  import { useModal } from '/@/components/Modal';
-  import DataRuleModal from './DataRuleModal.vue';
-  import { dataRuleColumns, dataRuleSearchFormSchema } from './menu.data';
-  import { dataRuleList, deleteRule } from './menu.api';
-  import { ColEx } from '/@/components/Form/src/types';
-  import { useDrawerAdaptiveWidth } from '/@/hooks/jeecg/useAdaptiveWidth';
-  const permissionId = ref('');
+import {ref, unref} from 'vue';
+import {BasicDrawer, useDrawerInner} from '/@/components/Drawer';
+import {BasicTable, TableAction, useTable} from '/@/components/Table';
+import {useModal} from '/@/components/Modal';
+import DataRuleModal from './DataRuleModal.vue';
+import {dataRuleColumns, dataRuleSearchFormSchema} from './menu.data';
+import {dataRuleList, deleteRule} from './menu.api';
+import {ColEx} from '/@/components/Form/src/types';
+import {useDrawerAdaptiveWidth} from '/@/hooks/jeecg/useAdaptiveWidth';
+
+const permissionId = ref('');
   const { adaptiveWidth } = useDrawerAdaptiveWidth();
   //权限规则model
   const [registerModal, { openModal }] = useModal();

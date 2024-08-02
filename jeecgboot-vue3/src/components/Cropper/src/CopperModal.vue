@@ -74,18 +74,18 @@
   </BasicModal>
 </template>
 <script lang="ts">
-  import type { CropendResult, Cropper } from './typing';
+import type {CropendResult, Cropper} from './typing';
 
-  import { defineComponent, ref } from 'vue';
-  import CropperImage from './Cropper.vue';
-  import { Space, Upload, Avatar, Tooltip } from 'ant-design-vue';
-  import { useDesign } from '/@/hooks/web/useDesign';
-  import { BasicModal, useModalInner } from '/@/components/Modal';
-  import { dataURLtoBlob } from '/@/utils/file/base64Conver';
-  import { isFunction } from '/@/utils/is';
-  import { useI18n } from '/@/hooks/web/useI18n';
+import {defineComponent, ref} from 'vue';
+import CropperImage from './Cropper.vue';
+import {Avatar, Space, Tooltip, Upload} from 'ant-design-vue';
+import {useDesign} from '/@/hooks/web/useDesign';
+import {BasicModal, useModalInner} from '/@/components/Modal';
+import {dataURLtoBlob} from '/@/utils/file/base64Conver';
+import {isFunction} from '/@/utils/is';
+import {useI18n} from '/@/hooks/web/useI18n';
 
-  type apiFunParams = { file: Blob; name: string; filename: string };
+type apiFunParams = { file: Blob; name: string; filename: string };
 
   const props = {
     circled: { type: Boolean, default: true },

@@ -50,17 +50,17 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { ref, computed } from 'vue';
-  import { Icon } from '/@/components/Icon';
-  import { Progress } from 'ant-design-vue';
-  import ChartCard from '/@/components/chart/ChartCard.vue';
-  import Trend from '/@/components/chart/Trend.vue';
-  import Bar from '/@/components/chart/Bar.vue';
-  import SingleLine from '/@/components/chart/SingleLine.vue';
-  import { chartCardList, bdcCardList } from '../data';
-  import { useRootSetting } from '/@/hooks/setting/useRootSetting';
+import {computed, ref} from 'vue';
+import {Icon} from '/@/components/Icon';
+import {Progress} from 'ant-design-vue';
+import ChartCard from '/@/components/chart/ChartCard.vue';
+import Trend from '/@/components/chart/Trend.vue';
+import Bar from '/@/components/chart/Bar.vue';
+import SingleLine from '/@/components/chart/SingleLine.vue';
+import {bdcCardList, chartCardList} from '../data';
+import {useRootSetting} from '/@/hooks/setting/useRootSetting';
 
-  const { getThemeColor } = useRootSetting();
+const { getThemeColor } = useRootSetting();
   const props = defineProps({
     loading: {
       type: Boolean,

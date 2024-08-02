@@ -5,6 +5,7 @@ import com.baomidou.dynamic.datasource.creator.DataSourceProperty;
 import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.toolkit.JdbcUtils;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.jeecg.common.constant.CommonConstant;
@@ -19,7 +20,6 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import jakarta.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -412,7 +412,7 @@ public class CommonUtils {
         }
         return "";
     }
- 
+
     /**
      * 通过table的条件SQL
      *
@@ -423,7 +423,7 @@ public class CommonUtils {
         if(oConvertUtils.isEmpty(tableSql)){
             return null;
         }
-        
+
         if (tableSql.toLowerCase().indexOf(DataBaseConstant.SQL_WHERE) > 0) {
             String[] arr = tableSql.split(" (?i)where ");
             if (arr != null && oConvertUtils.isNotEmpty(arr[1])) {
@@ -443,7 +443,7 @@ public class CommonUtils {
         if(oConvertUtils.isEmpty(tableSql)){
             return null;
         }
-        
+
         if (tableSql.toLowerCase().indexOf(DataBaseConstant.SQL_WHERE) > 0) {
             String[] arr = tableSql.split(" (?i)where ");
             return arr[0].trim();
@@ -462,7 +462,7 @@ public class CommonUtils {
         if (set1 == null) {
             return false;
         }
-        
+
         if(set1.size()>0){
             for (String str : arr2) {
                 if (set1.contains(str)) {

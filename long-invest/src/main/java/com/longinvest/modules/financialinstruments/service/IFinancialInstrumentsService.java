@@ -1,7 +1,7 @@
 package com.longinvest.modules.financialinstruments.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.longinvest.modules.financialinstruments.entity.FinancialInstruments;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * @Description: 金融商品

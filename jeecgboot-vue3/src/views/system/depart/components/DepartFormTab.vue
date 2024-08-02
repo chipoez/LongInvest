@@ -11,13 +11,13 @@
 </template>
 
 <script lang="ts" setup>
-  import { watch, computed, inject, ref, unref, onMounted } from 'vue';
-  import { BasicForm, useForm } from '/@/components/Form/index';
-  import { saveOrUpdateDepart } from '../depart.api';
-  import { useBasicFormSchema, orgCategoryOptions } from '../depart.data';
-  import { useDesign } from '/@/hooks/web/useDesign';
+import {computed, onMounted, ref, unref, watch} from 'vue';
+import {BasicForm, useForm} from '/@/components/Form/index';
+import {saveOrUpdateDepart} from '../depart.api';
+import {orgCategoryOptions, useBasicFormSchema} from '../depart.data';
+import {useDesign} from '/@/hooks/web/useDesign';
 
-  const { prefixCls } = useDesign('j-depart-form-content');
+const { prefixCls } = useDesign('j-depart-form-content');
 
   const emit = defineEmits(['success']);
   const props = defineProps({

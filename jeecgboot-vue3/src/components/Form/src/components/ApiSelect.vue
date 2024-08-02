@@ -15,17 +15,17 @@
   </Select>
 </template>
 <script lang="ts">
-  import { defineComponent, PropType, ref, watchEffect, computed, unref, watch } from 'vue';
-  import { Select } from 'ant-design-vue';
-  import { isFunction } from '/@/utils/is';
-  import { useRuleFormItem } from '/@/hooks/component/useFormItem';
-  import { useAttrs } from '/@/hooks/core/useAttrs';
-  import { get, omit } from 'lodash-es';
-  import { LoadingOutlined } from '@ant-design/icons-vue';
-  import { useI18n } from '/@/hooks/web/useI18n';
-  import { propTypes } from '/@/utils/propTypes';
+import {computed, defineComponent, PropType, ref, unref, watch, watchEffect} from 'vue';
+import {Select} from 'ant-design-vue';
+import {isFunction} from '/@/utils/is';
+import {useRuleFormItem} from '/@/hooks/component/useFormItem';
+import {useAttrs} from '/@/hooks/core/useAttrs';
+import {get, omit} from 'lodash-es';
+import {LoadingOutlined} from '@ant-design/icons-vue';
+import {useI18n} from '/@/hooks/web/useI18n';
+import {propTypes} from '/@/utils/propTypes';
 
-  type OptionsItem = { label: string; value: string; disabled?: boolean };
+type OptionsItem = { label: string; value: string; disabled?: boolean };
 
   export default defineComponent({
     name: 'ApiSelect',

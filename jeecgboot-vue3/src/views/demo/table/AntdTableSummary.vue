@@ -4,11 +4,12 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, h } from 'vue';
-  import { BasicTable, useTable } from '/@/components/Table';
-  import { demoListApi } from '/@/api/demo/table';
-  import { BasicColumn } from '/@/components/Table/src/types/table';
-  /** 
+import {defineComponent, h} from 'vue';
+import {BasicTable, useTable} from '/@/components/Table';
+import {demoListApi} from '/@/api/demo/table';
+import {BasicColumn} from '/@/components/Table/src/types/table';
+
+/**
     相比原先的优势：
     1、Table 列头拖动时合计行不会错位;
     2、合计行使用TableSummary方式渲染；
