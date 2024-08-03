@@ -1,8 +1,4 @@
-import {BasicColumn} from '/@/components/Table';
-import {FormSchema} from '/@/components/Table';
-import { rules} from '/@/utils/helper/validator';
-import { render } from '/@/utils/common/renderUtils';
-import { getWeekMonthQuarterYear } from '/@/utils';
+import {BasicColumn, FormSchema} from '/@/components/Table';
 //列表数据
 export const columns: BasicColumn[] = [
    {
@@ -18,33 +14,34 @@ export const columns: BasicColumn[] = [
    {
     title: '代码',
     align:"center",
+    sorter: true,
     dataIndex: 'tickerSymbol'
    },
    {
-    title: '货币单位',
+    title: '货币',
     align:"center",
     dataIndex: 'currency_dictText'
    },
    {
-    title: '限购',
+    title: '限购金额',
     align:"center",
-    dataIndex: 'purchaseLimitAmount'
+    dataIndex: 'purchaseLimit'
    },
 ];
 //查询数据
 export const searchFormSchema: FormSchema[] = [
-     {
+	{
       label: "名称",
-      field: "name",
-      component: 'Input', //TODO 范围查询
+      field: 'name',
+      component: 'Input',
       //colProps: {span: 6},
-	},
+ 	},
 	{
       label: "种类",
       field: 'type',
       component: 'JDictSelectTag',
       componentProps:{
-          dictCode:"financial_instrument_type_dict"
+          dictCode:"instrument_dict"
       },
       //colProps: {span: 6},
  	},
@@ -52,6 +49,15 @@ export const searchFormSchema: FormSchema[] = [
       label: "代码",
       field: 'tickerSymbol',
       component: 'Input',
+      //colProps: {span: 6},
+ 	},
+	{
+      label: "货币",
+      field: 'currency',
+      component: 'JDictSelectTag',
+      componentProps:{
+          dictCode:"currency_dict"
+      },
       //colProps: {span: 6},
  	},
 ];
@@ -72,7 +78,7 @@ export const formSchema: FormSchema[] = [
     field: 'type',
     component: 'JDictSelectTag',
     componentProps:{
-        dictCode:"financial_instrument_type_dict"
+        dictCode:"instrument_dict"
      },
     dynamicRules: ({model,schema}) => {
           return [
@@ -91,7 +97,7 @@ export const formSchema: FormSchema[] = [
      },
   },
   {
-    label: '货币单位',
+    label: '货币',
     field: 'currency',
     component: 'JDictSelectTag',
     componentProps:{
@@ -99,8 +105,8 @@ export const formSchema: FormSchema[] = [
      },
   },
   {
-    label: '限购',
-    field: 'purchaseLimitAmount',
+    label: '限购金额',
+    field: 'purchaseLimit',
     component: 'InputNumber',
   },
 	// TODO 主键隐藏字段，目前写死为ID
@@ -115,10 +121,10 @@ export const formSchema: FormSchema[] = [
 // 高级查询数据
 export const superQuerySchema = {
   name: {title: '名称',order: 0,view: 'text', type: 'string',},
-  type: {title: '种类',order: 1,view: 'number', type: 'number',dictCode: 'financial_instrument_type_dict',},
+  type: {title: '种类',order: 1,view: 'list', type: 'string',dictCode: 'instrument_dict',},
   tickerSymbol: {title: '代码',order: 2,view: 'text', type: 'string',},
-  currency: {title: '货币单位',order: 3,view: 'list', type: 'string',dictCode: 'currency_dict',},
-  purchaseLimitAmount: {title: '限购',order: 4,view: 'number', type: 'number',},
+  currency: {title: '货币',order: 3,view: 'list', type: 'string',dictCode: 'currency_dict',},
+  purchaseLimit: {title: '限购金额',order: 4,view: 'number', type: 'number',},
 };
 
 /**
