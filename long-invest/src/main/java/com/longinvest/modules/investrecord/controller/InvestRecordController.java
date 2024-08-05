@@ -16,6 +16,7 @@ import org.jeecg.common.aspect.annotation.AutoLog;
 import org.jeecg.common.system.base.controller.JeecgController;
 import org.jeecg.common.system.query.QueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -67,8 +68,10 @@ public class InvestRecordController extends JeecgController<InvestRecord, IInves
 	@Operation(summary="投资记录-添加")
 	@RequiresPermissions("investrecord:invest_record:add")
 	@PostMapping(value = "/add")
+	@Transactional
 	public Result<String> add(@RequestBody InvestRecord investRecord) {
 		investRecordService.save(investRecord);
+		investRecordService.updateInvestPlan(investRecord);
 		return Result.OK("添加成功！");
 	}
 
@@ -84,6 +87,7 @@ public class InvestRecordController extends JeecgController<InvestRecord, IInves
 	@RequestMapping(value = "/edit", method = {RequestMethod.PUT,RequestMethod.POST})
 	public Result<String> edit(@RequestBody InvestRecord investRecord) {
 		investRecordService.updateById(investRecord);
+		investRecordService.updateInvestPlan(investRecord);
 		return Result.OK("编辑成功!");
 	}
 

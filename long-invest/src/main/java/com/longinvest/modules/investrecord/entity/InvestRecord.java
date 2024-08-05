@@ -74,4 +74,9 @@ public class InvestRecord implements Serializable {
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Schema(description = "投资日期")
     private java.util.Date investTime;
+    /**结算标记*/
+    @Excel(name = "结算标记", width = 15)
+    @Schema(description = "结算标记")
+    @Dict(dicCode = "settle_flag_dict")
+    private String settleFlag;
 }

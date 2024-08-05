@@ -17,7 +17,7 @@ import java.io.Serializable;
 /**
  * @Description: 投资计划
  * @Author: jeecg-boot
- * @Date:   2024-08-04
+ * @Date:   2024-08-05
  * @Version: V1.0
  */
 @Data
@@ -97,11 +97,7 @@ public class InvestPlan implements Serializable {
 	/**当前头寸*/
 	@Excel(name = "当前头寸", width = 15)
     @Schema(description = "当前头寸")
-    private java.math.BigDecimal singlePosition;
-	/**当前次数*/
-	@Excel(name = "当前次数", width = 15)
-    @Schema(description = "当前次数")
-    private java.lang.Integer currentInvestTimes;
+    private java.math.BigDecimal currentAvailable;
 	/**总投资*/
 	@Excel(name = "总投资", width = 15)
     @Schema(description = "总投资")

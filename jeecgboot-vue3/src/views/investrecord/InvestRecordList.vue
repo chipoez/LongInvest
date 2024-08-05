@@ -66,6 +66,7 @@ const queryParam = reactive<any>({});
               fieldMapToNumber: [
               ],
               fieldMapToTime: [
+                 ['investTime', ['investTime_begin', 'investTime_end'], 'YYYY-MM-DD HH:mm:ss'],
               ],
             },
            actionColumn: {

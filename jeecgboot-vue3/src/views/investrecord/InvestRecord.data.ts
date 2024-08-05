@@ -21,6 +21,17 @@ export const columns: BasicColumn[] = [
     align:"center",
     dataIndex: 'correlatePrice'
    },
+   {
+    title: '投资日期',
+    align:"center",
+    sorter: true,
+    dataIndex: 'investTime'
+   },
+   {
+    title: '结算标记',
+    align:"center",
+    dataIndex: 'settleFlag_dictText'
+   }
 ];
 //查询数据
 export const searchFormSchema: FormSchema[] = [
@@ -33,6 +44,16 @@ export const searchFormSchema: FormSchema[] = [
       },
       //colProps: {span: 6},
  	},
+     {
+      label: "投资日期",
+      field: "investTime",
+      component: 'RangePicker',
+      componentProps: {
+          valueType: 'Date',
+          showTime:true
+      },
+      //colProps: {span: 6},
+	},
 ];
 //表单数据
 export const formSchema: FormSchema[] = [
@@ -43,7 +64,7 @@ export const formSchema: FormSchema[] = [
     componentProps:{
        dict:"invest_plan,name,id"
     },
-    dynamicRules: ({}) => {
+    dynamicRules: ({model,schema}) => {
           return [
                  { required: true, message: '请输入投资计划!'},
           ];
@@ -53,7 +74,7 @@ export const formSchema: FormSchema[] = [
     label: '投资数额',
     field: 'fund',
     component: 'InputNumber',
-    dynamicRules: ({}) => {
+    dynamicRules: ({model,schema}) => {
           return [
                  { required: true, message: '请输入投资数额!'},
           ];
@@ -63,7 +84,7 @@ export const formSchema: FormSchema[] = [
     label: '净值',
     field: 'price',
     component: 'InputNumber',
-    dynamicRules: ({}) => {
+    dynamicRules: ({model,schema}) => {
           return [
                  { required: true, message: '请输入净值!'},
           ];
@@ -73,6 +94,23 @@ export const formSchema: FormSchema[] = [
     label: '相关净值',
     field: 'correlatePrice',
     component: 'InputNumber',
+  },
+  {
+    label: '投资日期',
+    field: 'investTime',
+    component: 'DatePicker',
+    componentProps: {
+       showTime: true,
+       valueFormat: 'YYYY-MM-DD HH:mm:ss'
+     },
+  },
+  {
+    label: '结算标记',
+    field: 'settleFlag',
+    component: 'JDictSelectTag',
+    componentProps:{
+      dictCode:"settle_flag_dict"
+    },
   },
 	// TODO 主键隐藏字段，目前写死为ID
 	{
@@ -89,6 +127,8 @@ export const superQuerySchema = {
   fund: {title: '投资数额',order: 1,view: 'number', type: 'number',},
   price: {title: '净值',order: 2,view: 'number', type: 'number',},
   correlatePrice: {title: '相关净值',order: 3,view: 'number', type: 'number',},
+  investTime: {title: '投资日期',order: 4,view: 'datetime', type: 'string',},
+  settleFlag: {title: '结算标记',order: 5,view: 'list', type: 'string',dictCode: "settle_flag_dict"},
 };
 
 /**

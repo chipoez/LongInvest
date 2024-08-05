@@ -11,4 +11,5 @@ import com.longinvest.modules.investrecord.entity.InvestRecord;
  */
 public interface IInvestRecordService extends IService<InvestRecord> {
 
+    void updateInvestPlan(InvestRecord investRecord);
 }

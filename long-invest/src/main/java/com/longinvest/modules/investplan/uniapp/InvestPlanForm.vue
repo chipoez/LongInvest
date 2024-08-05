@@ -71,13 +71,7 @@
               <view class="cu-form-group">
                 <view class="flex align-center">
                   <view class="title"><text space="ensp">当前头寸：</text></view>
-                  <input type="number" placeholder="请输入当前头寸" v-model="model.singlePosition"/>
-                </view>
-              </view>
-              <view class="cu-form-group">
-                <view class="flex align-center">
-                  <view class="title"><text space="ensp">当前次数：</text></view>
-                  <input type="number" placeholder="请输入当前次数" v-model="model.currentInvestTimes"/>
+                  <input type="number" placeholder="请输入当前头寸" v-model="model.currentAvailable"/>
                 </view>
               </view>
               <view class="cu-form-group">

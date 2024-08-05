@@ -54,12 +54,7 @@ export const columns: BasicColumn[] = [
    {
     title: '当前头寸',
     align:"center",
-    dataIndex: 'singlePosition'
-   },
-   {
-    title: '当前次数',
-    align:"center",
-    dataIndex: 'currentInvestTimes'
+    dataIndex: 'currentAvailable'
    },
    {
     title: '总投资',
@@ -256,12 +251,7 @@ export const formSchema: FormSchema[] = [
   },
   {
     label: '当前头寸',
-    field: 'singlePosition',
-    component: 'InputNumber',
-  },
-  {
-    label: '当前次数',
-    field: 'currentInvestTimes',
+    field: 'currentAvailable',
     component: 'InputNumber',
   },
   {
@@ -355,8 +345,7 @@ export const superQuerySchema = {
   singleFunds: {title: '单次资金',order: 7,view: 'number', type: 'number',},
   singleRaise: {title: '单次上浮',order: 8,view: 'number', type: 'number',},
   singleFall: {title: '单次下沉',order: 9,view: 'number', type: 'number',},
-  singlePosition: {title: '当前头寸',order: 10,view: 'number', type: 'number',},
-  currentInvestTimes: {title: '当前次数',order: 11,view: 'number', type: 'number',},
+  currentAvailable: {title: '当前头寸',order: 10,view: 'number', type: 'number',},
   totalInvest: {title: '总投资',order: 12,view: 'number', type: 'number',},
   totalInvestTimes: {title: '总期数',order: 13,view: 'number', type: 'number',},
   averageTotal: {title: '持仓价格均线',order: 14,view: 'number', type: 'number',},
