@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 /**
  * @Description: 投资记录
  * @Author: jeecg-boot
- * @Date:   2024-08-04
+ * @Date:   2024-08-05
  * @Version: V1.0
  */
 @Service

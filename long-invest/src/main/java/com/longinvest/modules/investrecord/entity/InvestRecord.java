@@ -17,7 +17,7 @@ import java.io.Serializable;
 /**
  * @Description: 投资记录
  * @Author: jeecg-boot
- * @Date:   2024-08-04
+ * @Date:   2024-08-05
  * @Version: V1.0
  */
 @Data
@@ -68,4 +68,10 @@ public class InvestRecord implements Serializable {
 	@Excel(name = "相关净值", width = 15)
     @Schema(description = "相关净值")
     private java.math.BigDecimal correlatePrice;
+	/**投资日期*/
+	@Excel(name = "投资日期", width = 20, format = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @Schema(description = "投资日期")
+    private java.util.Date investTime;
 }
