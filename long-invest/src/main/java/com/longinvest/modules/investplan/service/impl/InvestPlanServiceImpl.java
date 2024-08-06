@@ -34,11 +34,9 @@ public class InvestPlanServiceImpl extends ServiceImpl<InvestPlanMapper, InvestP
     @Override
     @Transactional
     public void calculateData(InvestPlan investPlan, InvestRecord investRecord) {
-        List<InvestRecord> investRecords = investRecordMapper.selectList(Wrappers.<InvestRecord>lambdaQuery().eq(InvestRecord::getPlan, investPlan.getId()).orderByDesc(InvestRecord::getCreateTime));
-        investPlan.setTotalInvestTimes(investPlan.getTotalInvestTimes() + 1);
-        investPlan.setTotalInvest(investPlan.getTotalInvest().add(investRecord.getFund()));
-//        investPlan.setAverageTotal(investPlan.getTotalInvest().divide(new BigDecimal(investPlan.getTotalInvestTimes()), 4, RoundingMode.HALF_UP));
-//        investPlan.setAverageCorrelatedTotal(investPlan.getAverageCorrelatedTotal().multiply(new BigDecimal(investPlan.getTotalInvestTimes() - 1).divide(new BigDecimal(investPlan.getTotalInvestTimes()), 4, RoundingMode.HALF_UP)));
+        List<InvestRecord> investRecords = investRecordMapper.selectList(Wrappers.<InvestRecord>lambdaQuery().eq(InvestRecord::getPlan, investPlan.getId()).orderByDesc(InvestRecord::getInvestTime));
+        investPlan.setTotalInvestTimes(investRecords.size());
+        investPlan.setTotalInvest(investRecords.stream().map(InvestRecord::getFund).reduce(BigDecimal.ZERO, BigDecimal::add));
         investPlan.setAverageTotal(getAverage(investRecords,InvestRecord::getPrice,0));
         investPlan.setAverageCorrelatedTotal(getAverage(investRecords,InvestRecord::getCorrelatePrice,0));
         investPlan.setCurrentAvailable(investPlan.getCurrentAvailable().subtract(investRecord.getFund()));
