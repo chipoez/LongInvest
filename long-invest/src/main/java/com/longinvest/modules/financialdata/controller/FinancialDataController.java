@@ -1,41 +1,35 @@
 package com.longinvest.modules.financialdata.controller;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import org.jeecg.common.api.vo.Result;
-import org.jeecg.common.system.query.QueryGenerator;
-import org.jeecg.common.util.oConvertUtils;
-import com.longinvest.modules.financialdata.entity.FinancialData;
-import com.longinvest.modules.financialdata.service.IFinancialDataService;
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.longinvest.modules.financialdata.entity.FinancialData;
+import com.longinvest.modules.financialdata.service.IFinancialDataService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-
-import org.jeecgframework.poi.excel.ExcelImportUtil;
-import org.jeecgframework.poi.excel.def.NormalExcelConstants;
-import org.jeecgframework.poi.excel.entity.ExportParams;
-import org.jeecgframework.poi.excel.entity.ImportParams;
-import org.jeecgframework.poi.excel.view.JeecgEntityExcelView;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.jeecg.common.api.vo.Result;
+import org.jeecg.common.aspect.annotation.AutoLog;
 import org.jeecg.common.system.base.controller.JeecgController;
+import org.jeecg.common.system.query.QueryGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-import com.alibaba.fastjson.JSON;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import org.jeecg.common.aspect.annotation.AutoLog;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
  /**
  * @Description: 金融商品数据表
@@ -175,4 +169,19 @@ public class FinancialDataController extends JeecgController<FinancialData, IFin
         return super.importExcel(request, response, FinancialData.class);
     }
 
+	 @RequiresPermissions("financialdata:financial_data:importExcel")
+	 @RequestMapping(value = "/importExcelInvest", method = RequestMethod.POST)
+	 public Result<?> importExcelInvest(HttpServletRequest request,MultipartFile file, HttpServletResponse response) {
+		 List<Map<String, String>> records = new ArrayList<>();
+		 try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8));
+			  CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT)) {
+			 for (CSVRecord csvRecord : csvParser) {
+				 records.add(csvRecord.toMap());
+			 }
+		 } catch (Exception e) {
+			 e.printStackTrace();
+		 }
+
+		 return super.importExcel(request, response, FinancialData.class);
+	 }
 }
