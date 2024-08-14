@@ -4,9 +4,11 @@
    <BasicTable @register="registerTable" :rowSelection="rowSelection">
      <!--插槽:table标题-->
       <template #tableTitle>
-          <a-button type="primary" @click="handleAdd" preIcon="ant-design:plus-outlined"> 新增</a-button>
-          <a-button  type="primary" preIcon="ant-design:export-outlined" @click="onExportXls"> 导出</a-button>
-          <j-upload-button  type="primary" preIcon="ant-design:import-outlined" @click="onImportXls">导入</j-upload-button>
+        <a-button type="primary" @click="handleAdd" preIcon="ant-design:plus-outlined"> 新增</a-button>
+        <a-button  type="primary" preIcon="ant-design:export-outlined" @click="onExportXls"> 导出</a-button>
+        <j-upload-button  type="primary" preIcon="ant-design:import-outlined" @click="onImportXls">导入</j-upload-button>
+        <j-upload-button  type="primary" preIcon="ant-design:import-outlined" @click="onImportOuterXls">数据导入</j-upload-button>
+
           <a-dropdown v-if="selectedRowKeys.length > 0">
               <template #overlay>
                 <a-menu>
@@ -37,20 +39,22 @@
 </template>
 
 <script lang="ts" name="financialdata-financialData" setup>
-  import {ref, reactive, computed, unref} from 'vue';
-  import {BasicTable, useTable, TableAction} from '/@/components/Table';
-  import {useModal} from '/@/components/Modal';
-  import { useListPage } from '/@/hooks/system/useListPage'
-  import FinancialDataModal from './components/FinancialDataModal.vue'
-  import {columns, searchFormSchema, superQuerySchema} from './FinancialData.data';
-  import {list, deleteOne, batchDelete, getImportUrl,getExportUrl} from './FinancialData.api';
-  import { downloadFile } from '/@/utils/common/renderUtils';
-  import { useUserStore } from '/@/store/modules/user';
-  const queryParam = reactive<any>({});
+import {reactive, ref} from 'vue';
+import {BasicTable, TableAction} from '/@/components/Table';
+import {useModal} from '/@/components/Modal';
+import {useListPage} from '/@/hooks/system/useListPage'
+import FinancialDataModal from './components/FinancialDataModal.vue'
+import {columns, searchFormSchema, superQuerySchema} from './FinancialData.data';
+import {batchDelete, deleteOne, getExportUrl, getImportUrl, list} from './FinancialData.api';
+import {useUserStore} from '/@/store/modules/user';
+import {useMethods} from "@/hooks/system/useMethods";
+
+const queryParam = reactive<any>({});
   const checkedKeys = ref<Array<string | number>>([]);
   const userStore = useUserStore();
   //注册model
   const [registerModal, {openModal}] = useModal();
+  const {handleExportXls, handleImportXls} = useMethods();
   //注册table数据
   const { prefixCls,tableContext,onExportXls,onImportXls } = useListPage({
       tableProps:{
@@ -178,6 +182,13 @@
        ]
    }
 
+  // 导入 excel
+  function onImportOuterXls(file) {
+    let { url, success } =  {url:"/financialdata/financialData/importExcelInvest",success:handleSuccess}
+    //update-begin-author:taoyan date:20220507 for: erp代码生成 子表 导入地址是动态的
+      return handleImportXls(file, url, success || reload);
+      //update-end-author:taoyan date:20220507 for: erp代码生成 子表 导入地址是动态的
+  }
 
 </script>
 

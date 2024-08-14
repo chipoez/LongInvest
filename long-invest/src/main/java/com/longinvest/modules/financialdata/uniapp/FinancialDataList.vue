@@ -21,10 +21,10 @@
 </template>
 
 <script>
-	import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
-	import Mixin from "@/common/mixin/Mixin.js";
+import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
+import Mixin from "@/common/mixin/Mixin.js";
 
-	export default {
+export default {
 		name: '金融商品数据表',
 		mixins: [MescrollMixin,Mixin],
 		data() {

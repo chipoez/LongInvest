@@ -1,26 +1,23 @@
 package com.longinvest.modules.financialdata.entity;
 
-import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.util.Date;
-import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.jeecgframework.poi.excel.annotation.Excel;
-import org.jeecg.common.aspect.annotation.Dict;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.jeecg.common.aspect.annotation.Dict;
+import org.jeecgframework.poi.excel.annotation.Excel;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.io.Serializable;
 
 /**
  * @Description: 金融商品数据表
  * @Author: jeecg-boot
- * @Date:   2024-08-02
+ * @Date:   2024-08-13
  * @Version: V1.0
  */
 @Data
@@ -59,11 +56,6 @@ public class FinancialData implements Serializable {
 	@Dict(dictTable = "financial_instruments", dicText = "name", dicCode = "id")
     @Schema(description = "金融商品")
     private java.lang.String instrumentId;
-	/**金融商品类型*/
-	@Excel(name = "金融商品类型", width = 15, dicCode = "financial_instrument_type_dict")
-	@Dict(dicCode = "financial_instrument_type_dict")
-    @Schema(description = "金融商品类型")
-    private java.lang.Integer instrumentType;
 	/**数据日期*/
 	@Excel(name = "数据日期", width = 15, format = "yyyy-MM-dd")
 	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
@@ -86,4 +78,12 @@ public class FinancialData implements Serializable {
 	@Excel(name = "最低价", width = 15)
     @Schema(description = "最低价")
     private java.math.BigDecimal lowPrice;
+	/**交易量*/
+	@Excel(name = "交易量", width = 15)
+    @Schema(description = "交易量")
+    private java.lang.Integer tradeVolume;
+	/**涨跌率*/
+	@Excel(name = "涨跌率", width = 15)
+    @Schema(description = "涨跌率")
+    private java.math.BigDecimal changeRate;
 }

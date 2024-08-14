@@ -8,14 +8,14 @@
 </template>
 
 <script lang="ts">
-    import {BasicForm, useForm} from '/@/components/Form/index';
-    import {computed, defineComponent} from 'vue';
-    import {defHttp} from '/@/utils/http/axios';
-    import { propTypes } from '/@/utils/propTypes';
-    import {getBpmFormSchema} from '../FinancialData.data';
-    import {saveOrUpdate} from '../FinancialData.api';
-    
-    export default defineComponent({
+import {BasicForm, useForm} from '/@/components/Form/index';
+import {computed, defineComponent} from 'vue';
+import {defHttp} from '/@/utils/http/axios';
+import {propTypes} from '/@/utils/propTypes';
+import {getBpmFormSchema} from '../FinancialData.data';
+import {saveOrUpdate} from '../FinancialData.api';
+
+export default defineComponent({
         name: "FinancialDataForm",
         components:{
             BasicForm
@@ -59,7 +59,7 @@
             }
 
             initFormData();
-            
+
             return {
                 registerForm,
                 formDisabled,

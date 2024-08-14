@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.longinvest.modules.financialdata.entity.FinancialData;
+import com.longinvest.modules.financialdata.entity.InvestDataDto;
 import com.longinvest.modules.financialdata.service.IFinancialDataService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -18,6 +19,7 @@ import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.aspect.annotation.AutoLog;
 import org.jeecg.common.system.base.controller.JeecgController;
 import org.jeecg.common.system.query.QueryGenerator;
+import org.jeecgframework.poi.excel.annotation.Excel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,16 +27,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
- /**
+/**
  * @Description: 金融商品数据表
  * @Author: jeecg-boot
- * @Date:   2024-08-02
+ * @Date:   2024-08-13
  * @Version: V1.0
  */
 @Tag(name="金融商品数据表")
@@ -175,9 +177,35 @@ public class FinancialDataController extends JeecgController<FinancialData, IFin
 		 List<Map<String, String>> records = new ArrayList<>();
 		 try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8));
 			  CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT)) {
+			 Class<InvestDataDto> investDataDtoClass = InvestDataDto.class;
+			 Field[] fields = investDataDtoClass.getDeclaredFields();
+			 List<String> titles = Arrays.stream(fields).map(field -> {
+				 Excel annotation = field.getAnnotation(Excel.class);
+				 if (annotation == null) {
+					 return null;
+				 }
+				 return annotation.name();
+			 }).filter(Objects::nonNull).toList();
+			 boolean toTitle = true;
+			 List<String> titleList = new ArrayList<>();
+
 			 for (CSVRecord csvRecord : csvParser) {
-				 records.add(csvRecord.toMap());
+				 if (toTitle){
+					 csvRecord.forEach(value->{
+						 value = value.replaceAll("\"", "").replaceAll("\uFEFF","");
+						 if (titles.contains(value)){
+							 titleList.add(value);
+						 }
+					 });
+					 toTitle = false;
+					 continue;
+				 }
+				 Map<String, String> collect = IntStream.range(0, csvRecord.size()).boxed().collect(Collectors.toMap(titleList::get, csvRecord::get));
+				 records.add(collect);
 			 }
+
+
+
 		 } catch (Exception e) {
 			 e.printStackTrace();
 		 }

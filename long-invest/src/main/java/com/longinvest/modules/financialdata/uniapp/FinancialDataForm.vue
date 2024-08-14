@@ -14,12 +14,6 @@
                   <input  placeholder="请输入金融商品" v-model="model.instrumentId"/>
                 </view>
               </view>
-              <view class="cu-form-group">
-                <view class="flex align-center">
-                  <view class="title"><text space="ensp">金融商品类型：</text></view>
-                  <input type="number" placeholder="请输入金融商品类型" v-model="model.instrumentType"/>
-                </view>
-              </view>
               <my-date label="数据日期：" fields="day" v-model="model.date" placeholder="请输入数据日期"></my-date>
               <view class="cu-form-group">
                 <view class="flex align-center">
@@ -45,6 +39,18 @@
                   <input type="number" placeholder="请输入最低价" v-model="model.lowPrice"/>
                 </view>
               </view>
+              <view class="cu-form-group">
+                <view class="flex align-center">
+                  <view class="title"><text space="ensp">交易量：</text></view>
+                  <input type="number" placeholder="请输入交易量" v-model="model.tradeVolume"/>
+                </view>
+              </view>
+              <view class="cu-form-group">
+                <view class="flex align-center">
+                  <view class="title"><text space="ensp">涨跌率：</text></view>
+                  <input type="number" placeholder="请输入涨跌率" v-model="model.changeRate"/>
+                </view>
+              </view>
 				<view class="padding">
 					<button class="cu-btn block bg-blue margin-tb-sm lg" @click="onSubmit">
 						<text v-if="loading" class="cuIcon-loading2 cuIconfont-spin"></text>提交
@@ -56,9 +62,9 @@
 </template>
 
 <script>
-    import myDate from '@/components/my-componets/my-date.vue'
+import myDate from '@/components/my-componets/my-date.vue'
 
-    export default {
+export default {
         name: "FinancialDataForm",
         components:{ myDate },
         props:{

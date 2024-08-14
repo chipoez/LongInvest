@@ -1,13 +1,14 @@
-import { reactive, ref, Ref, unref } from 'vue';
-import { merge } from 'lodash-es';
-import { DynamicProps } from '/#/utils';
-import { BasicTableProps, TableActionType, useTable } from '/@/components/Table';
-import { ColEx } from '/@/components/Form/src/types';
-import { FormActionType } from '/@/components/Form';
-import { useMessage } from '/@/hooks/web/useMessage';
-import { useMethods } from '/@/hooks/system/useMethods';
-import { useDesign } from '/@/hooks/web/useDesign';
-import { filterObj } from '/@/utils/common/compUtils';
+import {reactive, ref, Ref, unref} from 'vue';
+import {merge} from 'lodash-es';
+import {DynamicProps} from '/#/utils';
+import {BasicTableProps, TableActionType, useTable} from '/@/components/Table';
+import {ColEx} from '/@/components/Form/src/types';
+import {FormActionType} from '/@/components/Form';
+import {useMessage} from '/@/hooks/web/useMessage';
+import {useMethods} from '/@/hooks/system/useMethods';
+import {useDesign} from '/@/hooks/web/useDesign';
+import {filterObj} from '/@/utils/common/compUtils';
+
 const { handleExportXls, handleImportXls } = useMethods();
 
 // 定义 useListPage 方法所需参数
@@ -76,13 +77,13 @@ export function useListPage(options: ListPageOptions) {
         console.error(e);
       }
       //update-end-author:taoyan date:20220507 for: erp代码生成 子表 导出报错，原因未知-
-      
+
       //update-begin-author:liusq date:20230410 for:[/issues/409]导出功能没有按排序结果导出,设置导出默认排序，创建时间倒序
       if(!paramsForm?.column){
          Object.assign(paramsForm,{column:'createTime',order:'desc'});
       }
       //update-begin-author:liusq date:20230410 for: [/issues/409]导出功能没有按排序结果导出,设置导出默认排序，创建时间倒序
-      
+
       //如果参数不为空，则整合到一起
       //update-begin-author:taoyan date:20220507 for: erp代码生成 子表 导出动态设置mainId
       if (params) {
@@ -111,6 +112,8 @@ export function useListPage(options: ListPageOptions) {
     let { url, success } = options?.importConfig ?? {};
     //update-begin-author:taoyan date:20220507 for: erp代码生成 子表 导入地址是动态的
     let realUrl = typeof url === 'function' ? url() : url;
+    console.log("lala")
+    console.log(realUrl)
     if (realUrl) {
       return handleImportXls(file, realUrl, success || reload);
       //update-end-author:taoyan date:20220507 for: erp代码生成 子表 导入地址是动态的
@@ -119,6 +122,7 @@ export function useListPage(options: ListPageOptions) {
       return Promise.reject();
     }
   }
+
 
   /**
    * 通用请求处理方法，可自动刷新表格，自动清空选择
