@@ -2,9 +2,9 @@ package com.longinvest.modules.financialdata.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.longinvest.modules.financialdata.entity.FinancialData;
-import com.longinvest.modules.financialdata.entity.InvestDataDto;
 import com.longinvest.modules.financialdata.service.IFinancialDataService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -14,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.aspect.annotation.AutoLog;
@@ -173,11 +175,11 @@ public class FinancialDataController extends JeecgController<FinancialData, IFin
 
 	 @RequiresPermissions("financialdata:financial_data:importExcel")
 	 @RequestMapping(value = "/importExcelInvest", method = RequestMethod.POST)
-	 public Result<?> importExcelInvest(HttpServletRequest request,MultipartFile file, HttpServletResponse response) {
+	 public Result<?> importExcelInvest(HttpServletRequest request,MultipartFile file, String instrumentId,String model) {
 		 List<Map<String, String>> records = new ArrayList<>();
 		 try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8));
 			  CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT)) {
-			 Class<InvestDataDto> investDataDtoClass = InvestDataDto.class;
+			 Class<?> investDataDtoClass = Class.forName(model);
 			 Field[] fields = investDataDtoClass.getDeclaredFields();
 			 List<String> titles = Arrays.stream(fields).map(field -> {
 				 Excel annotation = field.getAnnotation(Excel.class);
@@ -186,6 +188,9 @@ public class FinancialDataController extends JeecgController<FinancialData, IFin
 				 }
 				 return annotation.name();
 			 }).filter(Objects::nonNull).toList();
+
+			 Map<String,Field> titleFieldMap = Arrays.stream(fields).filter(this::filterExel)
+					 .collect(Collectors.toMap(field -> field.getAnnotation(Excel.class).name(), field -> field));
 			 boolean toTitle = true;
 			 List<String> titleList = new ArrayList<>();
 
@@ -203,13 +208,47 @@ public class FinancialDataController extends JeecgController<FinancialData, IFin
 				 Map<String, String> collect = IntStream.range(0, csvRecord.size()).boxed().collect(Collectors.toMap(titleList::get, csvRecord::get));
 				 records.add(collect);
 			 }
+			 records.forEach(record -> {
+				 FinancialData financialData = new FinancialData();
+				 financialData.setInstrumentId(instrumentId);
+				 titleFieldMap.forEach((title, field) -> {
+					 try {
+						 field.setAccessible(true);
+						 field.set(financialData, record.get(title));
+					 } catch (IllegalAccessException e) {
+						 log.error("设置属性失败", e);
+					 }
+				 });
+				 if (ObjectUtils.allNull(financialData.getDate(),financialData.getInstrumentId())){
+					 return;
+				 }
+				 LambdaQueryChainWrapper<FinancialData> wrappers = financialDataService.lambdaQuery().eq(FinancialData::getDate, financialData.getDate()).eq(FinancialData::getInstrumentId, instrumentId);
+				 if (wrappers.count() == 0){
+					 financialDataService.save(financialData);
+					 return;
+				 }
+//				 FinancialData one = wrappers.one();
+				 financialDataService.update(financialData,wrappers);
+			 });
 
 
 
 		 } catch (Exception e) {
-			 e.printStackTrace();
+			 log.error("导入失败", e);
 		 }
+		 return Result.OK("导入成功！");
 
-		 return super.importExcel(request, response, FinancialData.class);
 	 }
+
+	private boolean filterExel(Field field) {
+		Excel annotation = field.getAnnotation(Excel.class);
+		if (annotation == null){
+			return false;
+		}
+		String name = annotation.name();
+		if (StringUtils.isBlank(name)){
+			return false;
+		}
+		return true;
+	}
 }
