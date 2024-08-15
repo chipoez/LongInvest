@@ -231,8 +231,6 @@ public class FinancialDataController extends JeecgController<FinancialData, IFin
 				 financialDataService.update(financialData,wrappers);
 			 });
 
-
-
 		 } catch (Exception e) {
 			 log.error("导入失败", e);
 		 }
@@ -246,9 +244,6 @@ public class FinancialDataController extends JeecgController<FinancialData, IFin
 			return false;
 		}
 		String name = annotation.name();
-		if (StringUtils.isBlank(name)){
-			return false;
-		}
-		return true;
-	}
+        return !StringUtils.isBlank(name);
+    }
 }
