@@ -35,6 +35,7 @@
     </BasicTable>
     <!-- 表单区域 -->
     <FinancialDataModal @register="registerModal" @success="handleSuccess"></FinancialDataModal>
+<!--    <FinancialDataImportModal @register="registerImportModal" @success="handleSuccess"></FinancialDataImportModal>-->
   </div>
 </template>
 
@@ -44,6 +45,7 @@ import {BasicTable, TableAction} from '/@/components/Table';
 import {useModal} from '/@/components/Modal';
 import {useListPage} from '/@/hooks/system/useListPage'
 import FinancialDataModal from './components/FinancialDataModal.vue'
+import FinancialDataImportModal from './components/FinancialDataImportModal.vue'
 import {columns, searchFormSchema, superQuerySchema} from './FinancialData.data';
 import {batchDelete, deleteOne, getExportUrl, getImportUrl, list} from './FinancialData.api';
 import {useUserStore} from '/@/store/modules/user';

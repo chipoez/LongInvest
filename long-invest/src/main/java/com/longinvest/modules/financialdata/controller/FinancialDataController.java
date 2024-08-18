@@ -1,5 +1,6 @@
 package com.longinvest.modules.financialdata.controller;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
@@ -13,7 +14,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -36,7 +36,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -180,24 +179,22 @@ public class FinancialDataController extends JeecgController<FinancialData, IFin
 	 @RequiresPermissions("financialdata:financial_data:importExcel")
 @RequestMapping(value = "/importExcelInvest", method = RequestMethod.POST)
 public Result<?> importExcelInvest(HttpServletRequest request, MultipartFile file, String instrumentId, String model) {
-    List<Map<String, String>> records = new ArrayList<>();
-
     try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8));
          CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withFirstRecordAsHeader())) {
 
         Class<?> investDataDtoClass = Class.forName(model);
         Field[] fields = investDataDtoClass.getDeclaredFields();
-        List<String> titles = Arrays.stream(fields)
-                                    .filter(field -> field.isAnnotationPresent(Excel.class))
-                                    .map(field -> field.getAnnotation(Excel.class).name())
-                                    .toList();
+//		List<String> titles = Arrays.stream(fields)
+//				.filter(field -> field.isAnnotationPresent(Excel.class))
+//				.map(field -> field.getAnnotation(Excel.class).name())
+//				.toList();
 
-        Map<String, Field> titleFieldMap = Arrays.stream(fields)
-                                                .filter(field -> field.isAnnotationPresent(Excel.class))
-                                                .collect(Collectors.toMap(
-                                                    field -> field.getAnnotation(Excel.class).name(),
-                                                    Function.identity()
-                                                ));
+		Map<String, String> titleFieldMap = Arrays.stream(fields)
+				.filter(field -> field.isAnnotationPresent(Excel.class))
+				.collect(Collectors.toMap(
+						field -> field.getAnnotation(Excel.class).name(),
+						Field::getName
+				));
 
 //        List<String> header = csvParser.getHeaderMap().keySet().stream().toList();
 
@@ -207,37 +204,31 @@ public Result<?> importExcelInvest(HttpServletRequest request, MultipartFile fil
 //        }
 
         List<FinancialData> financialDataList = new ArrayList<>();
-        for (CSVRecord csvRecord : csvParser) {
-            FinancialData financialData = new FinancialData();
-            financialData.setInstrumentId(instrumentId);
+		csvParser.forEach(csvRecord -> {
+			Map<String, String> map = csvRecord.toMap();
+			titleFieldMap.forEach((title,fieldName)->{
+				map.put(fieldName, map.get(title));
+			});
+			FinancialData financialData = BeanUtil.toBean(map, FinancialData.class);
+			financialData.setInstrumentId(instrumentId);
+			if (ObjectUtils.allNull(financialData.getDate(), financialData.getInstrumentId())) {
+				return;
+			}
 
-            titleFieldMap.forEach((title, field) -> {
-                try {
-                    field.setAccessible(true);
-                    field.set(financialData, csvRecord.get(title));
-                } catch (IllegalAccessException e) {
-                    log.error("设置属性失败", e);
-                }
-            });
-
-            if (ObjectUtils.allNull(financialData.getDate(), financialData.getInstrumentId())) {
-                continue;
-            }
-
-            financialDataList.add(financialData);
-        }
+			financialDataList.add(financialData);
+		});
 
         // Perform batch operations
-        financialDataList.forEach(financialData -> {
-            LambdaQueryChainWrapper<FinancialData> wrapper = financialDataService.lambdaQuery()
-                                                                                .eq(FinancialData::getDate, financialData.getDate())
-                                                                                .eq(FinancialData::getInstrumentId, instrumentId);
-            if (wrapper.count() == 0) {
-                financialDataService.save(financialData);
-            } else {
-                financialDataService.update(financialData, wrapper);
-            }
-        });
+		financialDataList.forEach(financialData -> {
+			LambdaQueryChainWrapper<FinancialData> wrapper = financialDataService.lambdaQuery()
+					.eq(FinancialData::getDate, financialData.getDate())
+					.eq(FinancialData::getInstrumentId, instrumentId);
+			if (wrapper.count() == 0) {
+				financialDataService.save(financialData);
+			} else {
+				financialDataService.update(financialData, wrapper);
+			}
+		});
 
     } catch (ClassNotFoundException | IOException e) {
         log.error("导入失败", e);
