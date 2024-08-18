@@ -12,5 +12,5 @@ import com.longinvest.modules.investrecord.entity.InvestRecord;
  */
 public interface IInvestPlanService extends IService<InvestPlan> {
 
-    void calculateData(InvestPlan investPlan, InvestRecord investRecord);
+    void calculateData(InvestPlan investPlan);
 }

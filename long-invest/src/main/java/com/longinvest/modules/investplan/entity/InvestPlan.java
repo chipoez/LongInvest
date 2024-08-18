@@ -1,6 +1,7 @@
 package com.longinvest.modules.investplan.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -106,52 +107,67 @@ public class InvestPlan implements Serializable {
 	@Excel(name = "总期数", width = 15)
     @Schema(description = "总期数")
     private java.lang.Integer totalInvestTimes;
+    /**
+     * 以下为展示字段
+     */
 	/**持仓价格均线*/
 	@Excel(name = "持仓价格均线", width = 15)
     @Schema(description = "持仓价格均线")
+    @TableField(exist = false)
     private java.math.BigDecimal averageTotal;
 	/**持仓120日均线*/
 	@Excel(name = "持仓120日均线", width = 15)
     @Schema(description = "持仓120日均线")
+    @TableField(exist = false)
     private java.math.BigDecimal average120;
 	/**持仓60日均线*/
 	@Excel(name = "持仓60日均线", width = 15)
     @Schema(description = "持仓60日均线")
+    @TableField(exist = false)
     private java.math.BigDecimal average60;
 	/**30日均线*/
 	@Excel(name = "30日均线", width = 15)
     @Schema(description = "30日均线")
+    @TableField(exist = false)
     private java.math.BigDecimal average30;
 	/**20日均线*/
 	@Excel(name = "20日均线", width = 15)
     @Schema(description = "20日均线")
+    @TableField(exist = false)
     private java.math.BigDecimal average20;
 	/**10日均线*/
 	@Excel(name = "10日均线", width = 15)
     @Schema(description = "10日均线")
+    @TableField(exist = false)
     private java.math.BigDecimal average10;
 	/**相关标的均线*/
 	@Excel(name = "相关标的均线", width = 15)
     @Schema(description = "相关标的均线")
+    @TableField(exist = false)
     private java.math.BigDecimal averageCorrelatedTotal;
 	/**相关标的120日均线*/
 	@Excel(name = "相关标的120日均线", width = 15)
     @Schema(description = "相关标的120日均线")
+    @TableField(exist = false)
     private java.math.BigDecimal averageCorrelated120;
 	/**相关标的60均线*/
 	@Excel(name = "相关标的60均线", width = 15)
     @Schema(description = "相关标的60均线")
+    @TableField(exist = false)
     private java.math.BigDecimal averageCorrelated60;
 	/**相关标的30日均线*/
 	@Excel(name = "相关标的30日均线", width = 15)
     @Schema(description = "相关标的30日均线")
+    @TableField(exist = false)
     private java.math.BigDecimal averageCorrelated30;
 	/**相关标的20日均线*/
 	@Excel(name = "相关标的20日均线", width = 15)
     @Schema(description = "相关标的20日均线")
+    @TableField(exist = false)
     private java.math.BigDecimal averageCorrelated20;
 	/**相关标的10日均线*/
 	@Excel(name = "相关标的10日均线", width = 15)
     @Schema(description = "相关标的10日均线")
+    @TableField(exist = false)
     private java.math.BigDecimal averageCorrelated10;
 }

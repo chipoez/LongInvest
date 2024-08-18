@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -32,14 +33,13 @@ import java.util.stream.Stream;
 public class InvestPlanServiceImpl extends ServiceImpl<InvestPlanMapper, InvestPlan> implements IInvestPlanService {
     private final InvestRecordMapper investRecordMapper;
     @Override
-    @Transactional
-    public void calculateData(InvestPlan investPlan, InvestRecord investRecord) {
+    public void calculateData(InvestPlan investPlan) {
         List<InvestRecord> investRecords = investRecordMapper.selectList(Wrappers.<InvestRecord>lambdaQuery().eq(InvestRecord::getPlan, investPlan.getId()).orderByDesc(InvestRecord::getInvestTime));
         investPlan.setTotalInvestTimes(investRecords.size());
         investPlan.setTotalInvest(investRecords.stream().map(InvestRecord::getFund).reduce(BigDecimal.ZERO, BigDecimal::add));
-        investPlan.setAverageTotal(getAverage(investRecords,InvestRecord::getPrice,0));
-        investPlan.setAverageCorrelatedTotal(getAverage(investRecords,InvestRecord::getCorrelatePrice,0));
-        investPlan.setCurrentAvailable(investPlan.getCurrentAvailable().subtract(investRecord.getFund()));
+        investPlan.setAverageTotal(getAverage(investRecords,InvestRecord::getPrice,investRecords.size()));
+        investPlan.setAverageCorrelatedTotal(getAverage(investRecords,InvestRecord::getCorrelatePrice,investRecords.size()));
+        investPlan.setCurrentAvailable(investRecords.stream().map(record-> record.getBudget().subtract(record.getFund())).reduce(BigDecimal.ZERO,BigDecimal::add));
         if (investRecords.size() >= 10){
             BigDecimal average10 = getAverage(investRecords, InvestRecord::getPrice ,10);
             investPlan.setAverage10(average10);
@@ -70,36 +70,45 @@ public class InvestPlanServiceImpl extends ServiceImpl<InvestPlanMapper, InvestP
             BigDecimal averageCorrelated120 = getAverage(investRecords, InvestRecord::getCorrelatePrice, 120);
             investPlan.setAverageCorrelated120(averageCorrelated120);
         }
-        investRecord.setSettleFlag("settled");
-        investRecordMapper.updateById(investRecord);
-        this.updateById(investPlan);
+//        investRecord.setSettleFlag("settled");
+//        this.updateById(investPlan);
     }
 
     private BigDecimal getAverage(List<InvestRecord> investRecords, Function<InvestRecord, BigDecimal> param, int count) {
-        if (investRecords.isEmpty()){
+        if (investRecords.isEmpty() || investRecords.size() < count) {
             return BigDecimal.ZERO;
         }
-        if (investRecords.size() < count){
-            throw new JeecgBootException("数据不足");
+
+        // 使用两个变量来分别记录加权总和和基金总和
+        BigDecimal weightTotal = BigDecimal.ZERO;
+        BigDecimal total = BigDecimal.ZERO;
+
+        // 遍历列表的前count个元素
+        for (int i = 0; i < count; i++) {
+            InvestRecord record = investRecords.get(i);
+            if (ObjectUtils.isEmpty(record)){
+                continue;
+            }
+            BigDecimal value = param.apply(record);
+            if (ObjectUtils.isEmpty(value)){
+                continue;
+            }
+            BigDecimal fund = record.getFund();
+            if (ObjectUtils.isEmpty(fund)){
+                continue;
+            }
+            weightTotal = weightTotal.add(value.multiply(fund));
+            total = total.add(fund);
         }
-        Stream<InvestRecord> stream = investRecords.stream();
-        if (count > 0){
-            stream = stream.limit(count);
+
+        // 防止除以零的情况
+        if (total.compareTo(BigDecimal.ZERO) == 0) {
+            return BigDecimal.ZERO;
         }
-        BigDecimal weightTotal = stream
-                .filter(ObjectUtils::isNotEmpty)
-                .map(record -> param.apply(record).multiply(record.getFund()))
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-        Stream<InvestRecord> totalStream = investRecords.stream();
-        if (count > 0){
-            totalStream = totalStream.limit(count);
-        }
-        BigDecimal total = totalStream
-                .filter(ObjectUtils::isNotEmpty)
-                .map(InvestRecord::getFund)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
         return weightTotal.divide(total, 4, RoundingMode.HALF_UP);
     }
+
 
 
 }

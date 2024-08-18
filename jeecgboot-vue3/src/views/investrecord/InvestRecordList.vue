@@ -37,16 +37,16 @@
 </template>
 
 <script lang="ts" name="investrecord-investRecord" setup>
-import {reactive, ref} from 'vue';
-import {BasicTable, TableAction} from '/@/components/Table';
-import {useModal} from '/@/components/Modal';
-import {useListPage} from '/@/hooks/system/useListPage'
-import InvestRecordModal from './components/InvestRecordModal.vue'
-import {columns, searchFormSchema, superQuerySchema} from './InvestRecord.data';
-import {batchDelete, deleteOne, getExportUrl, getImportUrl, list} from './InvestRecord.api';
-import {useUserStore} from '/@/store/modules/user';
-
-const queryParam = reactive<any>({});
+  import {ref, reactive, computed, unref} from 'vue';
+  import {BasicTable, useTable, TableAction} from '/@/components/Table';
+  import {useModal} from '/@/components/Modal';
+  import { useListPage } from '/@/hooks/system/useListPage'
+  import InvestRecordModal from './components/InvestRecordModal.vue'
+  import {columns, searchFormSchema, superQuerySchema} from './InvestRecord.data';
+  import {list, deleteOne, batchDelete, getImportUrl,getExportUrl} from './InvestRecord.api';
+  import { downloadFile } from '/@/utils/common/renderUtils';
+  import { useUserStore } from '/@/store/modules/user';
+  const queryParam = reactive<any>({});
   const checkedKeys = ref<Array<string | number>>([]);
   const userStore = useUserStore();
   //注册model
@@ -66,7 +66,7 @@ const queryParam = reactive<any>({});
               fieldMapToNumber: [
               ],
               fieldMapToTime: [
-                 ['investTime', ['investTime_begin', 'investTime_end'], 'YYYY-MM-DD HH:mm:ss'],
+                 ['investTime', ['investTime_begin', 'investTime_end'], 'YYYY-MM-DD'],
               ],
             },
            actionColumn: {

@@ -35,7 +35,7 @@
     </BasicTable>
     <!-- 表单区域 -->
     <FinancialDataModal @register="registerModal" @success="handleSuccess"></FinancialDataModal>
-<!--    <FinancialDataImportModal @register="registerImportModal" @success="handleSuccess"></FinancialDataImportModal>-->
+<!--    <FinancialDataImportModal @register="registerModal" @success="handleSuccess"></FinancialDataImportModal>-->
   </div>
 </template>
 

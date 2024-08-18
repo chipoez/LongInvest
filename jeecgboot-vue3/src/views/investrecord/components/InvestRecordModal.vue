@@ -5,12 +5,12 @@
 </template>
 
 <script lang="ts" setup>
-import {computed, ref, unref} from 'vue';
-import {BasicModal, useModalInner} from '/@/components/Modal';
-import {BasicForm, useForm} from '/@/components/Form/index';
-import {formSchema} from '../InvestRecord.data';
-import {saveOrUpdate} from '../InvestRecord.api';
-// Emits声明
+    import {ref, computed, unref} from 'vue';
+    import {BasicModal, useModalInner} from '/@/components/Modal';
+    import {BasicForm, useForm} from '/@/components/Form/index';
+    import {formSchema} from '../InvestRecord.data';
+    import {saveOrUpdate} from '../InvestRecord.api';
+    // Emits声明
     const emit = defineEmits(['register','success']);
     const isUpdate = ref(true);
     const isDetail = ref(false);

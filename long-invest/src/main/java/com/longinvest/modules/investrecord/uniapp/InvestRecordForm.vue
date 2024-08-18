@@ -32,7 +32,13 @@
                   <input type="number" placeholder="请输入相关净值" v-model="model.correlatePrice"/>
                 </view>
               </view>
-              <my-date label="投资日期：" v-model="model.investTime" placeholder="请输入投资日期"></my-date>
+              <view class="cu-form-group">
+                <view class="flex align-center">
+                  <view class="title"><text space="ensp">当日预算：</text></view>
+                  <input type="number" placeholder="请输入当日预算" v-model="model.budget"/>
+                </view>
+              </view>
+              <my-date label="投资日期：" fields="day" v-model="model.investTime" placeholder="请输入投资日期"></my-date>
 				<view class="padding">
 					<button class="cu-btn block bg-blue margin-tb-sm lg" @click="onSubmit">
 						<text v-if="loading" class="cuIcon-loading2 cuIconfont-spin"></text>提交

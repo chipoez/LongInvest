@@ -1,23 +1,26 @@
 package com.longinvest.modules.investrecord.entity;
 
+import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.util.Date;
+import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import io.swagger.v3.oas.annotations.media.Schema;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.jeecgframework.poi.excel.annotation.Excel;
+import org.jeecg.common.aspect.annotation.Dict;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.jeecg.common.aspect.annotation.Dict;
-import org.jeecgframework.poi.excel.annotation.Excel;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.io.Serializable;
 
 /**
  * @Description: 投资记录
  * @Author: jeecg-boot
- * @Date:   2024-08-05
+ * @Date:   2024-08-18
  * @Version: V1.0
  */
 @Data
@@ -68,15 +71,14 @@ public class InvestRecord implements Serializable {
 	@Excel(name = "相关净值", width = 15)
     @Schema(description = "相关净值")
     private java.math.BigDecimal correlatePrice;
+	/**当日预算*/
+	@Excel(name = "当日预算", width = 15)
+    @Schema(description = "当日预算")
+    private java.math.BigDecimal budget;
 	/**投资日期*/
-	@Excel(name = "投资日期", width = 20, format = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@Excel(name = "投资日期", width = 15, format = "yyyy-MM-dd")
+	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     @Schema(description = "投资日期")
     private java.util.Date investTime;
-    /**结算标记*/
-    @Excel(name = "结算标记", width = 15)
-    @Schema(description = "结算标记")
-    @Dict(dicCode = "settle_flag_dict")
-    private String settleFlag;
 }

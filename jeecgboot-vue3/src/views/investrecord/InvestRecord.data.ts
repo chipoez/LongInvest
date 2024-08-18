@@ -1,4 +1,8 @@
-import {BasicColumn, FormSchema} from '/@/components/Table';
+import {BasicColumn} from '/@/components/Table';
+import {FormSchema} from '/@/components/Table';
+import { rules} from '/@/utils/helper/validator';
+import { render } from '/@/utils/common/renderUtils';
+import { getWeekMonthQuarterYear } from '/@/utils';
 //列表数据
 export const columns: BasicColumn[] = [
    {
@@ -22,16 +26,20 @@ export const columns: BasicColumn[] = [
     dataIndex: 'correlatePrice'
    },
    {
+    title: '当日预算',
+    align:"center",
+    dataIndex: 'budget'
+   },
+   {
     title: '投资日期',
     align:"center",
     sorter: true,
-    dataIndex: 'investTime'
+    dataIndex: 'investTime',
+    customRender:({text}) =>{
+      text = !text ? "" : (text.length > 10 ? text.substr(0,10) : text);
+      return text;
+    },
    },
-   {
-    title: '结算标记',
-    align:"center",
-    dataIndex: 'settleFlag_dictText'
-   }
 ];
 //查询数据
 export const searchFormSchema: FormSchema[] = [
@@ -49,8 +57,7 @@ export const searchFormSchema: FormSchema[] = [
       field: "investTime",
       component: 'RangePicker',
       componentProps: {
-          valueType: 'Date',
-          showTime:true
+        valueType: 'Date',
       },
       //colProps: {span: 6},
 	},
@@ -96,20 +103,16 @@ export const formSchema: FormSchema[] = [
     component: 'InputNumber',
   },
   {
+    label: '当日预算',
+    field: 'budget',
+    component: 'InputNumber',
+  },
+  {
     label: '投资日期',
     field: 'investTime',
     component: 'DatePicker',
     componentProps: {
-       showTime: true,
-       valueFormat: 'YYYY-MM-DD HH:mm:ss'
-     },
-  },
-  {
-    label: '结算标记',
-    field: 'settleFlag',
-    component: 'JDictSelectTag',
-    componentProps:{
-      dictCode:"settle_flag_dict"
+      valueFormat: 'YYYY-MM-DD'
     },
   },
 	// TODO 主键隐藏字段，目前写死为ID
@@ -127,8 +130,8 @@ export const superQuerySchema = {
   fund: {title: '投资数额',order: 1,view: 'number', type: 'number',},
   price: {title: '净值',order: 2,view: 'number', type: 'number',},
   correlatePrice: {title: '相关净值',order: 3,view: 'number', type: 'number',},
-  investTime: {title: '投资日期',order: 4,view: 'datetime', type: 'string',},
-  settleFlag: {title: '结算标记',order: 5,view: 'list', type: 'string',dictCode: "settle_flag_dict"},
+  budget: {title: '当日预算',order: 4,view: 'number', type: 'number',},
+  investTime: {title: '投资日期',order: 5,view: 'date', type: 'string',},
 };
 
 /**

@@ -54,6 +54,7 @@ public class InvestPlanController extends JeecgController<InvestPlan, IInvestPla
 		QueryWrapper<InvestPlan> queryWrapper = QueryGenerator.initQueryWrapper(investPlan, req.getParameterMap());
 		Page<InvestPlan> page = new Page<InvestPlan>(pageNo, pageSize);
 		IPage<InvestPlan> pageList = investPlanService.page(page, queryWrapper);
+		pageList.getRecords().parallelStream().forEach(investPlanService::calculateData);
 		return Result.OK(pageList);
 	}
 
